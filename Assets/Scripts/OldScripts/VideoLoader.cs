@@ -19,7 +19,7 @@ public class VideoLoader : DataLoader {
 
 	public override void loadObject(GameObject o, int idx)
 	{
-		VideoObject video = (VideoObject)o.GetComponent(typeof(VideoObject));
+		VideoObject video = o.GetComponent<VideoObject>();
 
 		if (video) {
 			video.loadVideo(_data[idx]);
@@ -28,7 +28,7 @@ public class VideoLoader : DataLoader {
 
 	public override void unloadObject(GameObject o)
 	{
-		VideoObject video = (VideoObject)o.GetComponent(typeof(VideoObject));
+		VideoObject video = o.GetComponent<VideoObject> ();
 		
 		if (video) {
 			video.unloadVideo();
@@ -56,14 +56,14 @@ public class VideoLoader : DataLoader {
 
 	public override Vector3 getOriginalPosition(GameObject o)
 	{
-		VideoObject video = (VideoObject)o.GetComponent(typeof(VideoObject));
+		VideoObject video = o.GetComponent<VideoObject> ();
 
 		return video.origPosition;
 	}
 
 	public override void setOriginalPosition(GameObject o, Vector3 pos)
 	{
-		VideoObject video = (VideoObject)o.GetComponent(typeof(VideoObject));
+		VideoObject video = o.GetComponent<VideoObject> ();
 
 		video.origPosition = pos;
 	}

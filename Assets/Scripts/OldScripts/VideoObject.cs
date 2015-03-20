@@ -32,6 +32,8 @@ public class VideoObject : MonoBehaviour {
 #endif
 	private Renderer _progressRender;
 	private GameObject _progressBar;
+	private GameObject playerObject;
+	private GameObject moviePlayer;
 	private Vector3 _progressScale;
 
 	// Use this for initialization
@@ -49,11 +51,11 @@ public class VideoObject : MonoBehaviour {
 
 		origPosition = transform.position;
 
-		GameObject player = GameObject.Find ("MoviePlayer");
+		moviePlayer = GameObject.Find ("MoviePlayer");
 #if UNITY_STANDALONE
-		qtPlayer = (AVProQuickTimeMovie)player.GetComponent(typeof(AVProQuickTimeMovie));
+		qtPlayer = (AVProQuickTimeMovie)moviePlayer.GetComponent(typeof(AVProQuickTimeMovie));
 #endif
-		GameObject playerObject = GameObject.Find("OVRPlayerController");
+		playerObject= GameObject.Find("OVRPlayerController");
 		_center = playerObject.transform.position;
 
 		Transform t = gameObject.transform.Find ("progress");
