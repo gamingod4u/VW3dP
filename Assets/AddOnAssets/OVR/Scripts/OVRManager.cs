@@ -761,7 +761,7 @@ public class OVRManager : MonoBehaviour
 
 		prevHdr = hdr;
 
-		if (isHSWDisplayed && Input.anyKeyDown)
+		if (isHSWDisplayed)
 		{
 			DismissHSWDisplay();
 			
