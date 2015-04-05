@@ -34,7 +34,7 @@ public class TheWall : MonoBehaviour {
 	void Start() {
 
 		_dataLoader = dataLoaderObject.GetComponent<DataLoader>();
-		playerObject = GameObject.Find ("OVRPlaayerController");
+		playerObject = GameObject.Find ("OVRPlayerController");
 
 
 		loadContent ();

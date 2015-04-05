@@ -1,62 +1,85 @@
 ﻿using UnityEngine;
-using System.Collections;
-
 using System;
-using System.IO;
-using System.Text;
+using System.Collections;
 using System.Net;
 using System.Net.Sockets;
-using System.Threading;
+using System.Collections.Generic;
 
-public class ThreadSocketTest : MonoBehaviour 
+
+
+public class Data
 {
-	private Thread 				recieveThread;
-	private UdpClient			client;
+ 	public byte code, url;
+ 
+ 	public int ToBuffer(byte[] buffer, int pos)
+ 	{
+ 		int newPos = pos;
+ 		buffer[newPos++] = code;
+ 		buffer[newPos++] = url;
+ 		return newPos - pos;
+ 	}
+ 	
+ 	public void FromBuffer(byte[] buffer, int pos)
+ 	{
+ 		
+ 	}
+}
 
-	// Use this for initialization
-	void Start () 
+
+public class ThreadSocketTest : MonoBehaviour
+{
+	
+	public int 		portNum = 0;
+	public string 	hostName = string.Empty;
+	
+	private EndPoint        bindEndPoint;
+	private Data 			data;
+	private Socket          receiveSocket;
+	private Socket 			sendSocket;
+	private byte[] 			recBuffer, buffer;
+	
+	void Start()
 	{
-		Init();
-
-	}
-
-	void Init()
-	{
-		recieveThread = new Thread(new ThreadStart(ReceivedData));
-
-		recieveThread.IsBackground = true;
-		recieveThread.Start();
-	}
-
-	private void ReceivedData()
-	{
-		try 
-		{	
-
-		}
-		catch(Exception e)
-		{
-			Debug.Log(e);
-		}
-	}
-
-	private void SendData()
-	{
-		try 
-		{	
+			sendSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+			IPAddress sendTo = FirstDnsEntry(hostName);
+			EndPoint sendEndPoint = new IPEndPoint(sendTo, portNum);
+			buffer = new byte[9999];
+			buffer= System.Text.Encoding.ASCII.GetBytes("001");
+			sendSocket.SendTo(buffer, buffer.Length, SocketFlags.None,sendEndPoint);
 			
-		}
-		catch(Exception e)
-		{
-			Debug.Log(e);
-		}
+			receiveSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+			bindEndPoint = new IPEndPoint(IPAddress.Any, portNum);
+			recBuffer = new byte[9999];
+			receiveSocket.Bind(bindEndPoint);
+			receiveSocket.BeginReceiveFrom(recBuffer, 0, recBuffer.Length, SocketFlags.None, ref bindEndPoint, new AsyncCallback(MessageReceivedCallback),(object)this); 		
 	}
 
-	void OnApplicationQuit()
-	{
-		recieveThread.Abort(); 
+ 	void MessageReceivedCallback(IAsyncResult result)
+ 	{
+ 		EndPoint remoteEndPoint  = new IPEndPoint(0,0);
+ 		try
+ 		{
+			int bytesRead = receiveSocket.EndReceiveFrom(result, ref remoteEndPoint);
+			Debug.Log(System.Text.Encoding.ASCII.GetString(recBuffer));
+		}    
+		catch (SocketException e) 
+		{
+			Console.WriteLine("Error: {0} {1}", e.ErrorCode, e.Message);
+		}
+		receiveSocket.BeginReceiveFrom(recBuffer, 0, recBuffer.Length, 
+		                               SocketFlags.None, ref bindEndPoint, 
+		                               new AsyncCallback(MessageReceivedCallback), (object)this);
+	}
 
-		if(client != null)
-			client.Close();
+	IPAddress FirstDnsEntry(string hostName)
+	{
+		IPHostEntry ipHost = Dns.GetHostEntry(hostName);
+		IPAddress[] addr = ipHost.AddressList;
+		if(addr.Length == 0)
+			throw new Exception("No IpAddress!");
+		
+		return addr[0];
+		
+		
 	}
 }

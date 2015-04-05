@@ -5,6 +5,10 @@ using System;
 public class HeadTracking : MonoBehaviour {
 
 	private TheWall _circle;
+	
+	
+	public	bool onMenus = false;
+	public  bool onWalls = false;
 
 	// Use this for initialization
 	void Start () {
