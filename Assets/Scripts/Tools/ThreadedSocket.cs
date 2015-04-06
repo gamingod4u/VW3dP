@@ -95,7 +95,7 @@ public class ThreadedSocket : MonoBehaviour {
 	{
 		try
 		{
-			string message = "004https://img.tnastatic.com/a3:2q81w278r/thumbs/36/4_1761957l.jpg";
+			string message = "004https://img.tnastatic.com/a3:2q81w278r/thumbs/36/4_1761957l.jpg\n";
 			
 			if (message != "")
 			{

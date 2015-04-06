@@ -1,13 +1,13 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class ContentColumn
+/*public class ContentColumn
 {
 	public int page;
 	public float rotation;
 	public GameObject[] obj;
-}
+}*/
 
 public class TheWall : MonoBehaviour {
 
@@ -44,9 +44,11 @@ public class TheWall : MonoBehaviour {
 
 	}
 
-	void Update() {
+	void Update() 
+	{
 
-		if (rotateSpeed != 0.0f) {
+		if (rotateSpeed != 0.0f) 
+		{
 
 			if (rotateSpeed > 0 && haltNegScroll == true)
 				haltNegScroll = false;
@@ -58,13 +60,15 @@ public class TheWall : MonoBehaviour {
 
 				Vector3 center = playerObject.transform.position;
 
-				for (int col=0; col<numObjects; col++) {
+				for (int col=0; col<numObjects; col++) 
+				{
 					if (_contentGrid[col] == null)
 						continue;
 
 					bool bRowDeleted = false;
 
-					for (int row=0;row<videosPerCol;row++) {
+					for (int row=0;row<videosPerCol;row++) 
+					{
 
 						if (_contentGrid[col].obj[row] == null)
 							continue;
@@ -98,31 +102,35 @@ public class TheWall : MonoBehaviour {
 			{
 				if (_contentGrid[col] != null && _contentGrid[col].page != -1)
 				{
-					if (_contentGrid[col].page < lowest) {
+					if (_contentGrid[col].page < lowest) 
+					{
 						lowest = _contentGrid[col].page;
 						lowestIdx = col;
 					}
 
-					if (_contentGrid[col].page > highest) {
+					if (_contentGrid[col].page > highest)
+					{
 						highest = _contentGrid[col].page;
 						highestIdx = col;
 					}
 				}
 			}
-
+		
 			if (_contentGrid[lowestIdx].rotation > 180 && _contentGrid[lowestIdx].rotation < 190 && rotateSpeed < 0)
 			{
 				// Unload this column
 				unloadColumn(lowestIdx);
 
-			}else if (_contentGrid[lowestIdx].page > 0 && _contentGrid[lowestIdx].rotation > 190 && rotateSpeed > 0) {
+			}else if (_contentGrid[lowestIdx].page > 0 && _contentGrid[lowestIdx].rotation > 190 && rotateSpeed > 0) 
+			{
 				int prevcol = lowestIdx-1;
 				if (prevcol == -1)
 					prevcol = numObjects-1;
 
 				loadColumn(prevcol, _contentGrid[lowestIdx].page-1);
 
-			}else if (_contentGrid[lowestIdx].rotation > 0 && _contentGrid[lowestIdx].rotation < 30 && _contentGrid[lowestIdx].page == 0 && rotateSpeed > 0)
+			}
+			else if (_contentGrid[lowestIdx].rotation > 0 && _contentGrid[lowestIdx].rotation < 30 && _contentGrid[lowestIdx].page == 0 && rotateSpeed > 0)
 			{
 				// End of the line reached
 				haltPosScroll = true;
@@ -133,7 +141,9 @@ public class TheWall : MonoBehaviour {
 				// Unload this column
 				unloadColumn(highestIdx);
 
-			}else if (_contentGrid[highestIdx].page < maxPage && _contentGrid[highestIdx].rotation < 170 && rotateSpeed < 0) {
+			}
+			else if (_contentGrid[highestIdx].page < maxPage && _contentGrid[highestIdx].rotation < 170 && rotateSpeed < 0) 
+			{
 				// First column is not being deleted, there is 1 free column before it and content is not on the first page
 				// This means we can inject new content
 				int nextcol = highestIdx+1;
@@ -142,7 +152,8 @@ public class TheWall : MonoBehaviour {
 
 				loadColumn(nextcol, _contentGrid[highestIdx].page+1);
 
-			}else if (_contentGrid[highestIdx].rotation > 0 && _contentGrid[highestIdx].rotation < 30 && _contentGrid[highestIdx].page == maxPage && rotateSpeed < 0)
+			}
+			else if (_contentGrid[highestIdx].rotation > 0 && _contentGrid[highestIdx].rotation < 30 && _contentGrid[highestIdx].page == maxPage && rotateSpeed < 0)
 			{
 				// End of the line reached
 				haltNegScroll = true;

@@ -50,7 +50,9 @@ public class VideoObject : MonoBehaviour {
 //		thumbCache = new Texture[_maxRotationThumb+1];
 
 		origPosition = transform.position;
-
+	}
+	void Start()
+	{
 		moviePlayer = GameObject.Find ("MoviePlayer");
 #if UNITY_STANDALONE
 		qtPlayer = (AVProQuickTimeMovie)moviePlayer.GetComponent(typeof(AVProQuickTimeMovie));

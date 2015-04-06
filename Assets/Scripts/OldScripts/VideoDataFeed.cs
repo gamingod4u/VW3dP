@@ -17,7 +17,8 @@ public class VideoDataFeed
 		
 		JSONNode N = JSON.Parse (www.text);
 		
-		for (int i=0; i<N.Count; i++) {
+		for (int i=0; i<N.Count; i++)
+		{
 			data.Add(newVideoData(N[i]["VID"].AsInt, N[i]["viddir"].Value, N[i]["first_thumb"].AsInt));
 		}
 		Debug.Log ("FoundX " + data.Count + " videos");
