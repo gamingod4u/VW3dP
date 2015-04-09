@@ -17,6 +17,7 @@ public class ThreadSocketTest : MonoBehaviour
 	public string 	hostName = string.Empty;
 	
 	private EndPoint        bindEndPoint;
+	private EndPoint        sendEndPoint;
 	private NetworkData		data;
 	private Socket          receiveSocket;
 	private Socket 			sendSocket;
@@ -27,26 +28,28 @@ public class ThreadSocketTest : MonoBehaviour
 			data = gameObject.GetComponent<NetworkData>();
 			sendSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 			IPAddress sendTo = FirstDnsEntry(hostName);
-			EndPoint sendEndPoint = new IPEndPoint(sendTo, portNum);
-			buffer = new byte[9999];
+			sendEndPoint = new IPEndPoint(sendTo, portNum);
+			buffer = new byte[1024];
 			buffer= System.Text.Encoding.ASCII.GetBytes("004https://img.tnastatic.com/a3:2q81w278r/thumbs/36/4_1761957l.jpg\n");
 			sendSocket.SendTo(buffer, buffer.Length, SocketFlags.None,sendEndPoint);
 			
 			receiveSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 			receiveSocket.Blocking = false;
 			bindEndPoint = new IPEndPoint(IPAddress.Any, portNum);
-			recBuffer = new byte[9999];
+			recBuffer = new byte[1024];
 			receiveSocket.Bind(bindEndPoint);
-			receiveSocket.BeginReceiveFrom(recBuffer, 0, recBuffer.Length, SocketFlags.None, ref bindEndPoint, new AsyncCallback(MessageReceivedCallback),(object)this); 		
+			receiveSocket.BeginReceiveFrom(recBuffer, 0, recBuffer.Length, SocketFlags.None, ref bindEndPoint, new AsyncCallback(MessageReceivedCallback),(object)this); 
+			
 	}
 
  	void MessageReceivedCallback(IAsyncResult result)
  	{
- 		EndPoint remoteEndPoint  = new IPEndPoint(0,0);
+ 		EndPoint remoteEndPoint  = new IPEndPoint(FirstDnsEntry(hostName),9998);
  		try
  		{
 			int bytesRead = receiveSocket.EndReceiveFrom(result, ref remoteEndPoint);
-			Debug.Log(System.Text.Encoding.ASCII.GetString(recBuffer));
+			//Debug.Log(System.Text.Encoding.ASCII.GetString(recBuffer));
+			data.FromBuffer(recBuffer, 0);
 		}    
 		catch (SocketException e) 
 		{
@@ -55,8 +58,7 @@ public class ThreadSocketTest : MonoBehaviour
 		receiveSocket.BeginReceiveFrom(recBuffer, 0, recBuffer.Length, 
 		                               SocketFlags.None, ref bindEndPoint, 
 		                               new AsyncCallback(MessageReceivedCallback), (object)this);
-		                               
-		 data.FromBuffer(recBuffer, 0);
+		
 	}
 
 	IPAddress FirstDnsEntry(string hostName)
@@ -69,5 +71,14 @@ public class ThreadSocketTest : MonoBehaviour
 		return addr[0];
 		
 		
+	}
+	void Update()
+	{
+		if(Input.GetKeyDown(KeyCode.E))
+		{
+			buffer = new byte[1024];
+			buffer= System.Text.Encoding.ASCII.GetBytes("002");//004https://img.tnastatic.com/a3:2q81w278r/thumbs/36/4_1761957l.jpg\n");
+			sendSocket.SendTo(buffer,sendEndPoint);
+		}
 	}
 }

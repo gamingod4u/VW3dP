@@ -15,11 +15,6 @@ public class NetworkTest : MonoBehaviour
 	
 	}
 	
-	// Update is called once per frame
-	void Update () 
-	{
-	
-	}
 	public static void Recieve(Socket socket, byte[] Buffer, int offset, int size, int timeout)
 	{
 		int startTickCount = Environment.TickCount;

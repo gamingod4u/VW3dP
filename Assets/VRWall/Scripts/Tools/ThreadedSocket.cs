@@ -25,7 +25,7 @@ public class ThreadedSocket : MonoBehaviour {
 	private static readonly Queue<Action> tasks = new Queue<Action>();
 	
 	public int requestPort = 9998;
-	private string hostName = "a7x.overflow.biz";
+	private string hostName = "telnet.overflow.biz";
 	
 	UdpClient udpRequestSender;
 	UdpClient udpRequestReceiver;
@@ -53,8 +53,7 @@ public class ThreadedSocket : MonoBehaviour {
 		// Listen for the request
 		this.OnRequestReceived += (message) => {
 			Debug.Log("Request Received: " + message);
-			// Do some more stuff when we get a request
-			// Use `Network.maxConnections` for example
+			
 		};
 		
 		// Send out the request

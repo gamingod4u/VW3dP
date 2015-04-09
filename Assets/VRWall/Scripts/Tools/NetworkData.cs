@@ -18,8 +18,10 @@ public class NetworkData : MonoBehaviour
 		return newPos - pos;
 	}
 	
-	public void FromBuffer(byte[] buffer, int pos)
+	public int FromBuffer(byte[] buffer, int pos)
 	{
-		string message = System.Text.Encoding.UTF8.GetBytes(buffer, 0, buffer.Length);
+		string stringData = System.Text.Encoding.ASCII.GetString(buffer);
+		Debug.Log(stringData);
+		return 0;
 	}
 }

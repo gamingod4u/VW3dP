@@ -1,0 +1,102 @@
+Initialize engine version: 4.6.3f1 (4753d8b6ef2b)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 780 (ID=0x1004)
+    Vendor:   NVIDIA
+    VRAM:     2901 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: E:\projects\VideoWall3D\Distribute\VideoWall3D_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading E:\projects\VideoWall3D\Distribute\VideoWall3D_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: E:\projects\VideoWall3D\Distribute\VideoWall3D_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading E:\projects\VideoWall3D\Distribute\VideoWall3D_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: E:\projects\VideoWall3D\Distribute\VideoWall3D_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading E:\projects\VideoWall3D\Distribute\VideoWall3D_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: E:\projects\VideoWall3D\Distribute\VideoWall3D_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading E:\projects\VideoWall3D\Distribute\VideoWall3D_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: E:\projects\VideoWall3D\Distribute\VideoWall3D_Data\Managed\ICSharpCode.SharpZipLib.dll (this message is harmless)
+Loading E:\projects\VideoWall3D\Distribute\VideoWall3D_Data\Managed\ICSharpCode.SharpZipLib.dll into Unity Child Domain
+- Completed reload, in  0.041 seconds
+<RI> Initializing input.
+<RI> Input initialized.
+desktop: 3440x1440 60Hz; virtual: 7200x1920 at 0,-275
+Platform assembly: E:\projects\VideoWall3D\Distribute\VideoWall3D_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: E:\projects\VideoWall3D\Distribute\VideoWall3D_Data\Managed\System.dll (this message is harmless)
+UnloadTime: 3.264730 ms
+System memory in use before: 24.4 MB.
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+System memory in use after: 24.1 MB.
+
+Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 348.
+Total: 0.556285 ms (FindLiveObjects: 0.016273 ms CreateObjectMapping: 0.009219 ms MarkObjects: 0.104273 ms  DeleteObjects: 0.041346 ms)
+
+[AVProQuickTime] version 2.92 initialised
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+AVProQuickTimeManager:Init() (at E:\projects\VideoWall3D\Assets\AVProQuickTime\Scripts\Components\AVProQuickTimeManager.cs:106)
+AVProQuickTimeManager:Start() (at E:\projects\VideoWall3D\Assets\AVProQuickTime\Scripts\Components\AVProQuickTimeManager.cs:83)
+ 
+(Filename: E:/projects/VideoWall3D/Assets/AVProQuickTime/Scripts/Components/AVProQuickTimeManager.cs Line: 106)
+
+[AVProQuickTime] Conversion method: Unity4
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+AVProQuickTimeManager:Init() (at E:\projects\VideoWall3D\Assets\AVProQuickTime\Scripts\Components\AVProQuickTimeManager.cs:128)
+AVProQuickTimeManager:Start() (at E:\projects\VideoWall3D\Assets\AVProQuickTime\Scripts\Components\AVProQuickTimeManager.cs:83)
+ 
+(Filename: E:/projects/VideoWall3D/Assets/AVProQuickTime/Scripts/Components/AVProQuickTimeManager.cs Line: 128)
+
+https://alpha.tnaflix.com/json_test.php
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+<loadJSON>c__Iterator4:MoveNext() (at E:\projects\VideoWall3D\Assets\VideoDataFeed.cs:12)
+UnityEngine.MonoBehaviour:StartCoroutine_Auto(IEnumerator)
+UnityEngine.MonoBehaviour:StartCoroutine(IEnumerator) (at C:\buildslave\unity\build\artifacts\StandalonePlayerGenerated\UnityEngineMonoBehaviour.cs:62)
+VideoLoader:loadData(Action) (at E:\projects\VideoWall3D\Assets\VideoLoader.cs:76)
+TheWall:loadContent() (at E:\projects\VideoWall3D\Assets\TheWall.cs:225)
+TheWall:Start() (at E:\projects\VideoWall3D\Assets\TheWall.cs:36)
+ 
+(Filename: E:/projects/VideoWall3D/Assets/VideoDataFeed.cs Line: 12)
+
+FoundX 124 videos
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+<loadJSON>c__Iterator4:MoveNext() (at E:\projects\VideoWall3D\Assets\VideoDataFeed.cs:23)
+ 
+(Filename: E:/projects/VideoWall3D/Assets/VideoDataFeed.cs Line: 23)
+
+Start video: http://smog-05.tnaflix.com/01/013930fb091d29f48a09/out8.mp4
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+VideoObject:startVideo(String) (at E:\projects\VideoWall3D\Assets\VideoObject.cs:284)
+VideoObject:Update() (at E:\projects\VideoWall3D\Assets\VideoObject.cs:353)
+ 
+(Filename: E:/projects/VideoWall3D/Assets/VideoObject.cs Line: 284)
+
+[AVProQuickTime] loaded movie http://smog-05.tnaflix.com/01/013930fb091d29f48a09/out8.mp4[1280x720 @ 29.99998hz] YCbCr 1066.534 sec 31996 frames
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+AVProQuickTime:PrepareMovie() (at E:\projects\VideoWall3D\Assets\AVProQuickTime\Scripts\Internal\AVProQuickTime.cs:359)
+AVProQuickTime:Update(Boolean) (at E:\projects\VideoWall3D\Assets\AVProQuickTime\Scripts\Internal\AVProQuickTime.cs:482)
+AVProQuickTimeMovie:Update() (at E:\projects\VideoWall3D\Assets\AVProQuickTime\Scripts\Components\AVProQuickTimeMovie.cs:133)
+ 
+(Filename: E:/projects/VideoWall3D/Assets/AVProQuickTime/Scripts/Internal/AVProQuickTime.cs Line: 359)
+
+Start video: http://smog-05.tnaflix.com/01/013930fb091d29f48a09/out8.mp4
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+VideoObject:startVideo(String) (at E:\projects\VideoWall3D\Assets\VideoObject.cs:284)
+VideoObject:Update() (at E:\projects\VideoWall3D\Assets\VideoObject.cs:353)
+ 
+(Filename: E:/projects/VideoWall3D/Assets/VideoObject.cs Line: 284)
+
+[AVProQuickTime] loaded movie http://smog-05.tnaflix.com/01/013930fb091d29f48a09/out8.mp4[1280x720 @ 29.99998hz] YCbCr 1066.534 sec 31996 frames
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+AVProQuickTime:PrepareMovie() (at E:\projects\VideoWall3D\Assets\AVProQuickTime\Scripts\Internal\AVProQuickTime.cs:359)
+AVProQuickTime:Update(Boolean) (at E:\projects\VideoWall3D\Assets\AVProQuickTime\Scripts\Internal\AVProQuickTime.cs:482)
+AVProQuickTimeMovie:Update() (at E:\projects\VideoWall3D\Assets\AVProQuickTime\Scripts\Components\AVProQuickTimeMovie.cs:133)
+ 
+(Filename: E:/projects/VideoWall3D/Assets/AVProQuickTime/Scripts/Internal/AVProQuickTime.cs Line: 359)
+
+Waiting for finish
