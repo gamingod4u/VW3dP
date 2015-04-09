@@ -1,0 +1,229 @@
+fileFormatVersion: 2
+guid: 712eebd134048184fb2abd2b089f6d24
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Background
+    100002: ButtonB1
+    100004: ButtonB2
+    100006: ButtonB3
+    100008: ButtonB4
+    100010: ButtonB5
+    100012: ButtonL1
+    100014: ButtonL2
+    100016: ButtonL2 1
+    100018: ButtonL3
+    100020: ButtonL3 1
+    100022: ButtonL4
+    100024: ButtonL4 1
+    100026: ButtonL5
+    100028: ButtonL5 1
+    100030: ButtonR1
+    100032: ButtonR1 1
+    100034: ButtonR2
+    100036: ButtonR2 1
+    100038: ButtonR3
+    100040: ButtonR3 1
+    100042: ButtonR4
+    100044: ButtonR4 1
+    100046: ButtonR5
+    100048: ButtonR5 1
+    100050: //RootNode
+    100052: PanelBackGround
+    100054: Plane011
+    100056: Plane012
+    100058: Plane013
+    100060: Plane014
+    100062: Plane015
+    100064: Screen
+    100066: TimeSliderBackground
+    400000: Background
+    400002: ButtonB1
+    400004: ButtonB2
+    400006: ButtonB3
+    400008: ButtonB4
+    400010: ButtonB5
+    400012: ButtonL1
+    400014: ButtonL2
+    400016: ButtonL2 1
+    400018: ButtonL3
+    400020: ButtonL3 1
+    400022: ButtonL4
+    400024: ButtonL4 1
+    400026: ButtonL5
+    400028: ButtonL5 1
+    400030: ButtonR1
+    400032: ButtonR1 1
+    400034: ButtonR2
+    400036: ButtonR2 1
+    400038: ButtonR3
+    400040: ButtonR3 1
+    400042: ButtonR4
+    400044: ButtonR4 1
+    400046: ButtonR5
+    400048: ButtonR5 1
+    400050: //RootNode
+    400052: PanelBackGround
+    400054: Plane011
+    400056: Plane012
+    400058: Plane013
+    400060: Plane014
+    400062: Plane015
+    400064: Screen
+    400066: TimeSliderBackground
+    2300000: Background
+    2300002: ButtonB1
+    2300004: ButtonB2
+    2300006: ButtonB3
+    2300008: ButtonB4
+    2300010: ButtonB5
+    2300012: ButtonL1
+    2300014: ButtonL2
+    2300016: ButtonL2 1
+    2300018: ButtonL3
+    2300020: ButtonL3 1
+    2300022: ButtonL4
+    2300024: ButtonL4 1
+    2300026: ButtonL5
+    2300028: ButtonL5 1
+    2300030: ButtonR1
+    2300032: ButtonR1 1
+    2300034: ButtonR2
+    2300036: ButtonR2 1
+    2300038: ButtonR3
+    2300040: ButtonR3 1
+    2300042: ButtonR4
+    2300044: ButtonR4 1
+    2300046: ButtonR5
+    2300048: ButtonR5 1
+    2300050: PanelBackGround
+    2300052: Plane011
+    2300054: Plane012
+    2300056: Plane013
+    2300058: Plane014
+    2300060: Plane015
+    2300062: Screen
+    2300064: TimeSliderBackground
+    2300066: //RootNode
+    3300000: Background
+    3300002: ButtonB1
+    3300004: ButtonB2
+    3300006: ButtonB3
+    3300008: ButtonB4
+    3300010: ButtonB5
+    3300012: ButtonL1
+    3300014: ButtonL2
+    3300016: ButtonL2 1
+    3300018: ButtonL3
+    3300020: ButtonL3 1
+    3300022: ButtonL4
+    3300024: ButtonL4 1
+    3300026: ButtonL5
+    3300028: ButtonL5 1
+    3300030: ButtonR1
+    3300032: ButtonR1 1
+    3300034: ButtonR2
+    3300036: ButtonR2 1
+    3300038: ButtonR3
+    3300040: ButtonR3 1
+    3300042: ButtonR4
+    3300044: ButtonR4 1
+    3300046: ButtonR5
+    3300048: ButtonR5 1
+    3300050: PanelBackGround
+    3300052: Plane011
+    3300054: Plane012
+    3300056: Plane013
+    3300058: Plane014
+    3300060: Plane015
+    3300062: Screen
+    3300064: TimeSliderBackground
+    3300066: //RootNode
+    4300000: Background
+    4300002: Screen
+    4300004: PanelBackGround
+    4300006: ButtonL1
+    4300008: ButtonL2
+    4300010: ButtonL3
+    4300012: ButtonL4
+    4300014: ButtonL5
+    4300016: ButtonB1
+    4300018: ButtonB2
+    4300020: ButtonB3
+    4300022: ButtonB4
+    4300024: ButtonB5
+    4300026: ButtonR5
+    4300028: ButtonR4
+    4300030: ButtonR3
+    4300032: ButtonR2
+    4300034: ButtonR1
+    4300036: TimeSliderBackground
+    4300038: ButtonR1
+    4300040: ButtonL2
+    4300042: ButtonL3
+    4300044: ButtonL4
+    4300046: ButtonL5
+    4300048: ButtonR2
+    4300050: ButtonR3
+    4300052: ButtonR4
+    4300054: ButtonR5
+    4300056: Plane011
+    4300058: Plane012
+    4300060: Plane013
+    4300062: Plane014
+    4300064: Plane015
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
