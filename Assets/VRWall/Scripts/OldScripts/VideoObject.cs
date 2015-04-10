@@ -69,7 +69,7 @@ public class VideoObject : MonoBehaviour {
 		preview.GetComponent<Renderer> ().enabled = false;
 
 		t = gameObject.transform.Find ("thumbnail");
-		t.GetComponent<Renderer> ().material.mainTexture = new Texture2D(256, 128, TextureFormat.ARGB32, false);
+		//t.GetComponent<Renderer> ().material.mainTexture = new Texture2D(256, 128, TextureFormat.ARGB32, false);
 
 		hideProgressBar ();
 

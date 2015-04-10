@@ -5,6 +5,8 @@ public class Look2Select : MonoBehaviour
 {
 	public delegate void HitEvent (string name);
 	public static event HitEvent OnHit;
+
+
 	public GameObject reticle;
 	private GameObject _selectedObject;
 	private Transform _cam;
