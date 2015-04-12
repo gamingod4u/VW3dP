@@ -6,23 +6,20 @@ using System.Threading;
 public class VideoObject : MonoBehaviour {
 
 	public Vector3 origPosition;
-
 	private VideoData _data;
-
 	public bool selected;
-
 	private int _curRotationThumb;
 	private int _maxRotationThumb;
 	private float _rotationInterval;
 	private bool _isPreviewing;
 	private bool _isRotating;
 	private bool _moveCloser;
+	private bool _inFront;
 	private bool _moveBack;
 	private Vector3 _center;
 	private bool _thumbLoaded;
-	private bool _inFront;
+	
 	public bool _isActive;
-
 	private Texture _firstThumb;
 	private Texture2D _activeTexture;
 
@@ -69,7 +66,7 @@ public class VideoObject : MonoBehaviour {
 		preview.GetComponent<Renderer> ().enabled = false;
 
 		t = gameObject.transform.Find ("thumbnail");
-		//t.GetComponent<Renderer> ().material.mainTexture = new Texture2D(256, 128, TextureFormat.ARGB32, false);
+		t.GetComponent<Renderer> ().material.mainTexture = new Texture2D(256, 128, TextureFormat.ARGB32, false);
 
 		hideProgressBar ();
 
@@ -151,7 +148,8 @@ public class VideoObject : MonoBehaviour {
 	{
 		Transform _thumbnail = gameObject.transform.Find ("thumbnail");
 
-		foreach(Collider c in GetComponents<Collider> ()) {
+		foreach(Collider c in GetComponents<Collider> ())
+		{
 			c.enabled = false;
 		}
 	}
@@ -160,7 +158,8 @@ public class VideoObject : MonoBehaviour {
 	{
 		Transform _thumbnail = gameObject.transform.Find ("thumbnail");
 
-		foreach(Collider c in GetComponents<Collider> ()) {
+		foreach(Collider c in GetComponents<Collider> ()) 
+		{
 			c.enabled = true;
 		}
 	}

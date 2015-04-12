@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections;
 using System.Net;
 using System.Net.Sockets;
 using System.Collections.Generic;

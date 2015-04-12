@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{D36F28FB-AF57-858B-52AE-717CFCE536FE}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace></RootNamespace>
+	<AssemblyName>Assembly-UnityScript</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+	<BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_4;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+	<Reference Include="System" />
+    <Reference Include="System.XML" />
+	<Reference Include="System.Core" />
+	<Reference Include="System.Xml.Linq" />
+	<Reference Include="UnityEngine">
+	  <HintPath>D:/Program Files (x86)/Unity/4.6.4/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>D:/Program Files (x86)/Unity/4.6.4/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\Scripts\SimpleUDPClient.js" />
+     <Compile Include="Assets\Scripts\SimpleUDPServer.js" />
+     <Compile Include="Assets\Scripts\SimpleUI.js" />
+     <None Include="Assets\Plugins\donotdelete.txt" />
+     <None Include="Assets\Plugins\Android\assets\donotdelete.txt" />
+     <None Include="Assets\AddOnAssets\AVProQuickTime\Shaders\AVProQuickTime_Copy.shader" />
+     <None Include="Assets\Plugins\Android\res\values-de\strings.xml" />
+     <None Include="Assets\AddOnAssets\AVProQuickTime\Shaders\AVProQuickTime_Shared.cginc" />
+     <None Include="Assets\Plugins\x86_64\donotdelete.txt" />
+     <None Include="Assets\Plugins\Android\res\values-ko\assets.xml" />
+     <None Include="Assets\Plugins\Android\res\values\assets.xml" />
+     <None Include="Assets\Plugins\Android\res\raw\efigs.fnt" />
+     <None Include="Assets\Plugins\Android\res\values-en-rGB\strings.xml" />
+     <None Include="Assets\Plugins\Android\res\values\styles.xml" />
+     <None Include="Assets\Plugins\Android\res\values-it\assets.xml" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
+     <None Include="Assets\AddOnAssets\OVR\Shaders\TextShader3D.shader" />
+     <None Include="Assets\AddOnAssets\OVR\Moonlight\Shaders\Unlit Crosshair.shader" />
+     <None Include="Assets\AddOnAssets\OVR\Shaders\Unlit Transparent HUD.shader" />
+     <None Include="Assets\Plugins\Android\res\values-es-rES\assets.xml" />
+     <None Include="Assets\AddOnAssets\AVProQuickTime\Shaders\AVProQuickTime_YCoCg2RGB.shader" />
+     <None Include="Assets\Plugins\Android\res\values-es\strings.xml" />
+     <None Include="Assets\Plugins\Android\res\values-es-rES\strings.xml" />
+     <None Include="Assets\Plugins\Android\res\values-en-rGB\assets.xml" />
+     <None Include="Assets\AddOnAssets\AVProQuickTime\Shaders\AVProQuickTime_YUV2RGB.shader" />
+     <None Include="Assets\AddOnAssets\AVProQuickTime\Shaders\AVProQuickTime_YUV7092RGB.shader" />
+     <None Include="Assets\AddOnAssets\OVR\Moonlight\Materials\GlobalMenu\OVRCutoutRamp.shader" />
+     <None Include="Assets\Plugins\Android\res\values-fr\assets.xml" />
+     <None Include="Assets\AddOnAssets\AVProQuickTime\Shaders\AVProQuickTime_RedBlueSwap.shader" />
+     <None Include="Assets\AddOnAssets\OVR\Shaders\OVRGUIShader.shader" />
+     <None Include="Assets\Plugins\Android\res\values-fr\strings.xml" />
+     <None Include="Assets\Plugins\x86\donotdelete.txt" />
+     <None Include="Assets\Plugins\Android\res\values-ko\strings.xml" />
+     <None Include="Assets\Plugins\Android\res\values-v11\styles.xml" />
+     <None Include="Assets\Plugins\Android\res\values-de\assets.xml" />
+     <None Include="Assets\Plugins\Android\res\values-es\assets.xml" />
+     <None Include="Assets\Plugins\Android\res\values\strings.xml" />
+     <None Include="Assets\Plugins\Android\res\values-it\strings.xml" />
+     <None Include="Assets\Plugins\Android\res\values-v14\styles.xml" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>D:/Program Files (x86)/Unity/4.6.4/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.4/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="ICSharpCode.SharpZipLib">
+ <HintPath>D:/PatricksFileSystem/Unity Projects/VW3dP/Assets/Plugins/ICSharpCode.SharpZipLib.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{A4038DEA-2C59-B3F3-17C5-BE8FE8F33870}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	   Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>

@@ -123,8 +123,6 @@ public class ButtonAction : MonoBehaviour {
 #if UNITY_STANDALONE
 					qtPlayer.UnloadMovie();
 
-					AVProQuickTime movie = qtPlayer.MovieInstance;
-
 					GameObject player = GameObject.Find ("player");
 					
 					Vector3 pos = transform.position;

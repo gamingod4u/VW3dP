@@ -98,7 +98,7 @@ public class MenuButtons : MonoBehaviour
 			case "faves":		buttonState = 6;StartCoroutine(MoveObject(startPosition,endPosition,1));break;
 			case "playlists": 	buttonState = 7;StartCoroutine(MoveObject(startPosition,endPosition,1));break;
 			case "log":			buttonState = 8;StartCoroutine(MoveObject(startPosition,endPosition,1));break;
-			break;	
+			
 		}
 		lastName = buttonName;
 	}
