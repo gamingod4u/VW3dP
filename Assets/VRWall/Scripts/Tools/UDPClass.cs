@@ -71,7 +71,7 @@ public class UDPClass : MonoBehaviour
 			try
 			{
 				
-				IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, portNum);
+				IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 5005);
 				byte[] data = client.Receive(ref anyIP);
 				string text = Encoding.ASCII.GetString(data);
 				Debug.Log(">> " + text);
@@ -115,8 +115,8 @@ public class UDPClass : MonoBehaviour
 		// ------------------------
 		// send it
 		// ------------------------
-		strMessage=GUI.TextField(new Rect(600,450,140,40),strMessage);
-		if (GUI.Button(new Rect(600,420,40,20),"send"))
+		strMessage=GUI.TextField(new Rect(500,305,140,40),strMessage);
+		if (GUI.Button(new Rect(500,420,40,20),"send"))
 		{
 			SendString(strMessage);
 		}  

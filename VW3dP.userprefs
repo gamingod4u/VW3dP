@@ -1,14 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\VRWall\Scripts\OldScripts\VideoObject.cs">
     <Files>
-      <File FileName="..\TheSolarGames\TheSolarGames.sln" Line="1" Column="1" />
-      <File FileName="..\TheSolarGames\Assets\Resources\Scripts\MiniMap.cs" Line="1" Column="1" />
-      <File FileName="Assets\VRWall\Scripts\FreeContent\Thumbnail.cs" Line="1" Column="1" />
-      <File FileName="Assets\VRWall\Scripts\OldScripts\VideoObject.cs" Line="20" Column="1" />
-      <File FileName="Assets\VRWall\Scripts\Tools\NetworkData.cs" Line="1" Column="1" />
-      <File FileName="Assets\VRWall\Scripts\FreeContent\MenuButtons.cs" Line="1" Column="1" />
-      <File FileName="Assets\VRWall\Scripts\OldScripts\ButtonAction.cs" Line="1" Column="1" />
+      <File FileName="Assets\VRWall\Scripts\OldScripts\VideoObject.cs" Line="304" Column="1" />
+      <File FileName="Assets\VRWall\Scripts\FreeContent\Thumbnail.cs" Line="49" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

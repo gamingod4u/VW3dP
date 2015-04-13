@@ -6,11 +6,11 @@ public class Thumbnail : MonoBehaviour
 	#region Class Variables
 	
 	// public variables
-	public GameObject 			thumbnail;
-	public GameObject			progressBar;
-	public GameObject			playerObject;
-	public GameObject 			moviePlayer;
-	public GameObject			preview;
+	public Transform 			thumbnail;
+	public Transform			progressBar;
+	public Transform			playerObject;
+	public Transform 			moviePlayer;
+	public Transform			preview;
 	public bool 				isActive = false;
 	public bool					selected = false;
 	
@@ -41,6 +41,18 @@ public class Thumbnail : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		Transform t = this.transform.Find("thumbnail");
+		thumbnail = t;
+		t = this.transform.Find("progress");
+		progressBar = t;
+		t = this.transform.Find("preview");
+		preview = t;
+		
+		
+		//preview = this.transform.Find("preview").GetComponent<GameObject>()as GameObject;
+		//progressBar = this.transform.Find("progress").GetComponent<GameObject>();
+		//thumbnail = this.transform.Find("thumbnail").GetComponent<GameObject>();
+		
 		qtPlayer = moviePlayer.GetComponent<AVProQuickTimeMovie>();
 		progressScale = progressBar.transform.localScale;
 		preview.renderer.enabled = false;	
