@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SaveInfo : MonoBehaviour {
+public class AppManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

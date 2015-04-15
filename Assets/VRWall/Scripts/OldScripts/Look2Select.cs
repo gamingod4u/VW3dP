@@ -15,7 +15,14 @@ public class Look2Select : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		_cam = GameObject.Find("OVRCameraRig/RightEyeAnchor").GetComponentInChildren<Camera>().transform;
+		try
+		{
+			_cam = GameObject.Find("OVRCameraRig/RightEyeAnchor").GetComponentInChildren<Camera>().transform;
+		}
+		catch
+		{
+			_cam = GameObject.Find("Camera").GetComponent<Transform>();
+		}
 		_selectedObject = null;
 	}
 	
@@ -24,7 +31,7 @@ public class Look2Select : MonoBehaviour
 	{
 	
 		if (Physics.Raycast (_cam.position, _cam.forward, out _hit)) 
-		{
+		{	
 			if(OnHit != null)
 				OnHit(_hit.transform.name);
 
