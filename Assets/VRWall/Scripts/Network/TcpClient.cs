@@ -10,7 +10,7 @@ using System.Text;
 
 
 
-public class StateObject
+/*public class StateObjects
 {
 	public Socket workSocket = null;
 	public const int bufferSize = 2048;
@@ -18,9 +18,10 @@ public class StateObject
 	public StringBuilder builder = new StringBuilder();
 }
 
-
+*/
 public class TcpClient  
 {
+	/*
 	private const int portNum = 9998;
 	
 	private static ManualResetEvent connectDone = new ManualResetEvent(false);
@@ -33,7 +34,7 @@ public class TcpClient
 	
 	public static void StartClient()
 	{
-		StateObject state = new StateObject();
+		StateObjects state = new StateObjects();
 		thisResponse = "";
 		try
 		{
@@ -85,10 +86,10 @@ public class TcpClient
 	{
 		try
 		{
-			StateObject state = new StateObject();
+			StateObjects state = new StateObjects();
 			state.workSocket = socket;
 			state.buffer = new byte[2048];
-			socket.BeginReceive(state.buffer,0,StateObject.bufferSize, 0, new AsyncCallback(ReceiveCallback), state);
+			socket.BeginReceive(state.buffer,0,StateObjects.bufferSize, 0, new AsyncCallback(ReceiveCallback), state);
 		}
 		catch(Exception e)
 		{
@@ -101,14 +102,14 @@ public class TcpClient
 		
 		try
 		{
-			StateObject state = (StateObject)ar.AsyncState;
+			StateObjects state = (StateObjects)ar.AsyncState;
 			Socket client = state.workSocket;
 			int byteRead = client.EndReceive(ar);
 		
 			if(byteRead > 0)
 			{
 				state.builder.Append(Encoding.ASCII.GetString(state.buffer, 0, byteRead));
-				client.BeginReceive(state.buffer, 0, StateObject.bufferSize, 0,new AsyncCallback(ReceiveCallback), state);
+				client.BeginReceive(state.buffer, 0, StateObjects.bufferSize, 0,new AsyncCallback(ReceiveCallback), state);
 			}
 			else
 			{
@@ -147,5 +148,5 @@ public class TcpClient
 		}
 	}
 	
-
+*/
 }

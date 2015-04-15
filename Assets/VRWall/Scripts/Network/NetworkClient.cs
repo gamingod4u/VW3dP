@@ -16,9 +16,6 @@ public class NetworkClient
 	private const int BUFFERSIZE = 2048;
 	private static ManualResetEvent clientDone = new ManualResetEvent(false);
 	
-	
-	
-	
 	public static string Connect(string hostOrIP, int portNum)
 	{
 		string results = string.Empty;
