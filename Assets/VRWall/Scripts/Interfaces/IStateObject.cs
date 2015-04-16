@@ -12,8 +12,6 @@ public interface IStateObject
 {
 	int 	BufferSize 	{get;}
 
-	int 	Id 			{get;}
-
 	bool 	Close 		{get; set;}
 
 	byte[] 	Buffer 		{get;}

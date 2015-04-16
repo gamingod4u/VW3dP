@@ -9,10 +9,8 @@ using System.Text;
 
 public interface IAsyncClient :  IDisposable
 {
-	event ConnectedHandler Connected;
-	event ClientMessageReceivedHandler MessageRecieved;
-	event ClientMessageSubmittedHandler MessageSubmitted;
-
+	void Init(string hostName, int portNum);
+	
 	void StartClient();
 
 	bool IsConnected();

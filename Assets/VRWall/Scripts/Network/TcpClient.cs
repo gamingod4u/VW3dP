@@ -6,11 +6,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Text;
 
-
-
-
-
-/*public class StateObjects
+public class StateObject
 {
 	public Socket workSocket = null;
 	public const int bufferSize = 2048;
@@ -18,53 +14,46 @@ using System.Text;
 	public StringBuilder builder = new StringBuilder();
 }
 
-*/
+
 public class TcpClient  
 {
-	/*
+
 	private const int portNum = 9998;
 	
-	private static ManualResetEvent connectDone = new ManualResetEvent(false);
-	private static ManualResetEvent sendDone = new ManualResetEvent(false);
-	private static ManualResetEvent receiveDone = new ManualResetEvent(false);
+	public static ManualResetEvent connectDone = new ManualResetEvent(false);
+	public static ManualResetEvent sendDone = new ManualResetEvent(false);
+	public static ManualResetEvent receiveDone = new ManualResetEvent(false);
 	
 	private static string thisResponse;
+
 	
-	public static Socket client;
-	
-	public static void StartClient()
+	public static Socket StartClient(Socket socket, string hostName, int portNum)
 	{
-		StateObjects state = new StateObjects();
+		StateObject state = new StateObject();
 		thisResponse = "";
 		try
 		{
-			IPHostEntry iphostInfo = Dns.GetHostEntry("ac.tnaflix.com");
+			IPHostEntry iphostInfo = Dns.GetHostEntry(hostName);
 			IPAddress ipAddress = iphostInfo.AddressList[0];
 			IPEndPoint remoteEp = new IPEndPoint(ipAddress, portNum);
-			client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+			socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 			
-			client.BeginConnect(remoteEp, new AsyncCallback(ConnectCallback), client);
+			socket.BeginConnect(remoteEp, new AsyncCallback(ConnectCallback), socket);
 			connectDone.WaitOne(2000);
-			
-			Send(client, "");
-			sendDone.WaitOne(2000);
-			
-			Receive(client);
-			receiveDone.WaitOne(2000);
-			
-			Debug.Log("Response received: " + thisResponse.ToString());
 			
 		}
 		catch(Exception e)
 		{
 			Debug.Log(e.ToString());
+			return null;
 		}
 		
+		return socket;
 	}
 
-	public static void Shutdown()
+	public static void Shutdown(Socket socket)
 	{
-		client.Shutdown(SocketShutdown.Both);
+		socket.Shutdown(SocketShutdown.Both);
 		
 	}
 	private static void ConnectCallback(IAsyncResult ar)
@@ -86,49 +75,56 @@ public class TcpClient
 	{
 		try
 		{
-			StateObjects state = new StateObjects();
+			StateObject state = new StateObject();
 			state.workSocket = socket;
-			state.buffer = new byte[2048];
-			socket.BeginReceive(state.buffer,0,StateObjects.bufferSize, 0, new AsyncCallback(ReceiveCallback), state);
+			socket.BeginReceive(state.buffer,0,StateObject.bufferSize, 0, new AsyncCallback(ReceiveCallback), state);
 		}
 		catch(Exception e)
 		{
 			Debug.Log(e.ToString());
 		}
 	}
+	private static int totalBytesRead = 0;
 	
-	private static void ReceiveCallback(IAsyncResult ar)
+	private static void ReceiveCallback( IAsyncResult ar )
 	{
-		
-		try
+		try 
 		{
-			StateObjects state = (StateObjects)ar.AsyncState;
+			StateObject state = (StateObject) ar.AsyncState;
 			Socket client = state.workSocket;
-			int byteRead = client.EndReceive(ar);
-		
-			if(byteRead > 0)
+			
+			int bytesRead = client.EndReceive(ar);
+			
+			if (totalBytesRead < bytesRead) 
 			{
-				state.builder.Append(Encoding.ASCII.GetString(state.buffer, 0, byteRead));
-				client.BeginReceive(state.buffer, 0, StateObjects.bufferSize, 0,new AsyncCallback(ReceiveCallback), state);
-			}
-			else
+				state.builder.Append(Encoding.ASCII.GetString(state.buffer,0,bytesRead));
+				
+				// Get the rest of the data.
+				client.BeginReceive(state.buffer,0,StateObject.bufferSize,0,
+				                    new AsyncCallback(ReceiveCallback), state);
+				totalBytesRead += bytesRead;
+			} 
+			else 
 			{
-				if(state.builder.Length > 1)
+				// All the data has arrived; put it in response.
+				if (state.builder.Length > 1) 
 				{
 					thisResponse = state.builder.ToString();
+					Debug.Log(thisResponse);
 				}
-				receiveDone.Set ();
+				totalBytesRead = 0;
+				// Signal that all bytes have been received.
+				receiveDone.Set();
 			}
-		}
-		catch(Exception e)
-		{
-			Debug.Log(e.ToString());
+		} catch (Exception e) {
+			Console.WriteLine(e.ToString());
 		}
 	}
 
 	public static void Send(Socket socket, string data)
 	{
 		byte[] byteData = Encoding.ASCII.GetBytes(data);
+
 		socket.BeginSend(byteData, 0, byteData.Length, 0, new AsyncCallback(SendCallback),socket);
 	}
 
@@ -148,5 +144,5 @@ public class TcpClient
 		}
 	}
 	
-*/
+
 }
