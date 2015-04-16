@@ -37,9 +37,13 @@ public class TcpClient
 			IPAddress ipAddress = iphostInfo.AddressList[0];
 			IPEndPoint remoteEp = new IPEndPoint(ipAddress, portNum);
 			socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-			
 			socket.BeginConnect(remoteEp, new AsyncCallback(ConnectCallback), socket);
 			connectDone.WaitOne(2000);
+			Send(socket, "003\n");
+			sendDone.WaitOne(1000);
+			Receive(socket);
+			receiveDone.WaitOne(1000);		
+
 			
 		}
 		catch(Exception e)
@@ -95,13 +99,10 @@ public class TcpClient
 			
 			int bytesRead = client.EndReceive(ar);
 			
-			if (totalBytesRead < bytesRead) 
+			if (bytesRead > 0) 
 			{
 				state.builder.Append(Encoding.ASCII.GetString(state.buffer,0,bytesRead));
-				
-				// Get the rest of the data.
-				client.BeginReceive(state.buffer,0,StateObject.bufferSize,0,
-				                    new AsyncCallback(ReceiveCallback), state);
+				client.BeginReceive(state.buffer,0,StateObject.bufferSize,0,new AsyncCallback(ReceiveCallback), state);
 				totalBytesRead += bytesRead;
 			} 
 			else 
@@ -116,7 +117,9 @@ public class TcpClient
 				// Signal that all bytes have been received.
 				receiveDone.Set();
 			}
-		} catch (Exception e) {
+		} 
+		catch (Exception e) 
+		{
 			Console.WriteLine(e.ToString());
 		}
 	}

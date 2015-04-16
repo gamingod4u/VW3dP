@@ -56,6 +56,8 @@ public class Thumbnail : MonoBehaviour
 		qtPlayer = moviePlayer.GetComponent<AVProQuickTimeMovie>();
 		progressScale = progressBar.transform.localScale;
 		preview.renderer.enabled = false;	
+		HideProgressBar();
+		DisableVideo();
 	}
 	
 	// Update is called once per frame
