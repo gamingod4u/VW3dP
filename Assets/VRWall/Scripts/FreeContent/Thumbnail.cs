@@ -47,15 +47,13 @@ public class Thumbnail : MonoBehaviour
 		progressBar = t;
 		t = this.transform.Find("preview");
 		preview = t;
-		
-		
-		//preview = this.transform.Find("preview").GetComponent<GameObject>()as GameObject;
-		//progressBar = this.transform.Find("progress").GetComponent<GameObject>();
-		//thumbnail = this.transform.Find("thumbnail").GetComponent<GameObject>();
-		
+			
 		qtPlayer = moviePlayer.GetComponent<AVProQuickTimeMovie>();
-		progressScale = progressBar.transform.localScale;
-		preview.renderer.enabled = false;	
+		
+        progressScale = progressBar.transform.localScale;
+		
+        preview.renderer.enabled = false;
+        thumbnail.renderer.material.mainTexture = new Texture2D(256, 128, TextureFormat.ARGB32, false);
 		HideProgressBar();
 		DisableVideo();
 	}
@@ -65,11 +63,15 @@ public class Thumbnail : MonoBehaviour
 	{
 		if(selected && isFront && progressBar.transform.localScale.x < progressScale.x)
 		{
-			float size = progressBar.transform.localScale.x + (.5f * Time.deltaTime);
-			progressBar.transform.localScale = new Vector3(size, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
-			
-			if(progressBar.transform.localScale.x > progressScale.x)
-				StartVideo("http://smog-05.tnaflix.com/01/013930fb091d29f48a09/out8.mp4");
+            Vector3 size = progressBar.localScale;
+            size.x += (.5f * Time.deltaTime);
+
+            if (size.x > progressBar.transform.localScale.x)
+            {
+                StartVideo("http://smog-05.tnaflix.com/01/013930fb091d29f48a09/out8.mp4");
+                size.x = progressBar.localScale.x;
+            }
+            progressBar.localScale = size;
 		}	
 		
 		if(moveCloser)
@@ -77,7 +79,7 @@ public class Thumbnail : MonoBehaviour
 			Vector3 destination = (origPosition - center)*.65f;
 			transform.position = Vector3.Lerp (transform.position, destination, 5f * Time.deltaTime);
 			
-			if(Vector3.Distance(destination, transform.position) < .010f)
+			if(Vector3.Distance(destination, transform.position) < .01f)
 				ReachedFront();
 		}
 		
@@ -85,11 +87,10 @@ public class Thumbnail : MonoBehaviour
 		{
 			transform.position = Vector3.Lerp(transform.position, origPosition, 8f * Time.deltaTime);
 			
-			if(Vector3.Distance(origPosition, transform.position) < 0.010f)
+			if(Vector3.Distance(origPosition, transform.position) < 0.01f)
 			{
 				transform.position = origPosition;
 				moveBack = false;
-				
 				thumbnail.collider.enabled = true;
 			}
 		}
@@ -102,7 +103,7 @@ public class Thumbnail : MonoBehaviour
 	{
 		isActive = false;
 		thumbnail.renderer.enabled = false;
-		
+        thumbnail.collider.enabled = false;
 		data = null;
 	}
 	
@@ -110,7 +111,7 @@ public class Thumbnail : MonoBehaviour
 	{
 		isActive = true;
 		thumbnail.renderer.enabled = true;
-		
+        thumbnail.collider.enabled = true;
 	}
 	
 	public void HideProgressBar()
@@ -131,6 +132,7 @@ public class Thumbnail : MonoBehaviour
 		data = video;
 		EnableVideo();
 		isActive = true;
+        LoadThumbnail();
 		
 	}
 	private void ReachedFront()
@@ -153,11 +155,14 @@ public class Thumbnail : MonoBehaviour
 	private void RotateThumb()
 	{
 		CancelInvoke ();
+
+        if (!isRotating)
+        {
+            thumbnail.renderer.material.mainTexture = oldThumb;
+            return;
+        }
 		
-		if(!isRotating)
-			thumbnail.renderer.material.mainTexture = oldThumb;
-			
-		string url =  "http://img3.tnastatic.com/a16:8q80w256j/thumbs/" + data.viddir + "/" + currentThumb + "_" + data.VID + "l.jpg";
+        string url =  "http://img3.tnastatic.com/a16:8q80w256j/thumbs/" + data.viddir + "/" + currentThumb + "_" + data.VID + "l.jpg";
 		StartCoroutine(LoadNextThumb(url, currentThumb));
 		currentThumb++;
 		if(currentThumb > maxThumb)
@@ -224,10 +229,27 @@ public class Thumbnail : MonoBehaviour
 	
 	IEnumerator GetImage(string url)
 	{
-		WWW www = new WWW(url);
-		yield return www;
-		www.LoadImageIntoTexture((Texture2D)thumbnail.renderer.material.mainTexture);
-		oldThumb = thumbnail.renderer.material.mainTexture;
+
+        //		Texture tex = VideoCache.getCachedTexture (url);
+
+        //Transform t = gameObject.transform.Find("thumbnail");
+
+        //		if (tex == null) {
+        // Start a download of the given URL
+        WWW www = new WWW(url);
+        // wait until the download is done
+        yield return www;
+
+        //			Debug.Log (url);
+
+        www.LoadImageIntoTexture((Texture2D)thumbnail.GetComponent<Renderer>().material.mainTexture);
+        //			t.GetComponent<Renderer> ().material.mainTexture = www.textureNonReadable;
+        oldThumb = thumbnail.GetComponent<Renderer>().material.mainTexture;
+
+        //			VideoCache.setCachedTexture(url, _firstThumb);
+        //		} else {
+        //			t.GetComponent<Renderer> ().material.mainTexture = tex;
+        //		}
 	}
 	
 	IEnumerator ShowPreview()
@@ -249,11 +271,19 @@ public class Thumbnail : MonoBehaviour
 	
 	IEnumerator LoadNextThumb(string url, int index)
 	{
-		Texture tex;
-		WWW www = new WWW(url);
-		yield return www;
-		
-		tex = (Texture)www.texture;
+        Texture tex;
+
+        //		if (thumbCache[index] == null) {
+        WWW www = new WWW(url);
+
+        yield return www;
+
+        tex = (Texture)www.texture;
+
+        //			thumbCache[index] = tex;
+        //		} else {
+        //			tex = thumbCache[index];
+        //		}
 		
 		if(isRotating)
 			thumbnail.renderer.material.mainTexture = tex;
