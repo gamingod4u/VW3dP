@@ -28,8 +28,7 @@ public class TcpClient
 
 	
 	public static Socket StartClient(Socket socket, string hostName, int portNum)
-	{
-		StateObject state = new StateObject();
+	{ 
 		thisResponse = "";
 		try
 		{

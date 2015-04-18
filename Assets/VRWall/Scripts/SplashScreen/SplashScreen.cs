@@ -18,9 +18,18 @@ public class SplashScreen : MonoBehaviour
 			assets.SetActive(false);					/// make sure nothing is on;
 		foreach(GameObject logos in sponsorLogos)
 			logos.SetActive(false);
-
-		StartCoroutine("WaitToEnd");
 	}
+
+    void Start() 
+    {
+        if (!AppManager.instance.VRConnected)
+            waitTimer = 3;
+        else
+            waitTimer = 15;
+            
+            
+            StartCoroutine("WaitToEnd");
+    }
 	
 	// Update is called once per frame
 	void Update () 
@@ -37,15 +46,17 @@ public class SplashScreen : MonoBehaviour
 			else if(menuCount == 2)
 			{
 				splashAssets[menuCount].SetActive(true);
-				for(int i = 0; i < 4; i++)
+
+				for(int i = 0; i < 5; i++)
 				{
 					sponsorLogos[i].SetActive(true);
+                    Debug.Log("here for :" + i);
 					StartCoroutine("TweenAlpha", sponsorLogos[i]);
 				}
 			}
 			else if( menuCount == 3)
 			{
-				StartCoroutine("WaitToEnd");
+                Application.LoadLevel(1);
 			}
 		}
 	}
@@ -61,7 +72,12 @@ public class SplashScreen : MonoBehaviour
 			yield return 0;
 		}   
 		yield return new WaitForSeconds(tweenTimer);
-		menuCount++;
+
+        if (menuCount <= 2)
+            menuCount++;
+        else
+            menuCount = 3;
+       
 		thisObject.SetActive(false);
 		isRunning = false;
 	}

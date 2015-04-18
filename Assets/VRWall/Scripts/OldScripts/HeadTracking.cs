@@ -11,9 +11,9 @@ public class HeadTracking : MonoBehaviour
 	public  bool onWalls = false;
 	
 	private WallController	wallController;
-	
-
-	private float 	   rotSpeed = 30f;
+    private Look2Select look2;
+    private bool isStopped = false;
+	public float 	   rotSpeed = 30f;
 	
 	void Awake()
 	{
@@ -25,8 +25,11 @@ public class HeadTracking : MonoBehaviour
 		theWall = GameObject.Find ("TheWall");
 		wallController = theWall.GetComponent<WallController> ();
 		theOptions = GameObject.Find("TheOptions");
-		theCam = GameObject.Find ("OVRCameraRig/CenterEyeAnchor").GetComponentInChildren<Transform> ();
-
+        look2 = GameObject.Find("Look2Select").GetComponent<Look2Select>();
+        if (AppManager.instance.VRConnected)
+            theCam = GameObject.Find("OVRCameraRig/CenterEyeAnchor").GetComponentInChildren<Transform>();
+        else
+            theCam = GameObject.Find("Camera").GetComponent<Transform>();
 	}
 	void Destroy()
 	{
@@ -58,20 +61,29 @@ public class HeadTracking : MonoBehaviour
 	private void RotateStuff(GameObject go)
 	{
 	
-		if (theCam.rotation.y > 0.1) 
+		if (theCam.rotation.y > 0.2) 
 		{
 			wallController.rotateSpeed = -rotSpeed;
 			go.transform.Rotate(Vector3.down * rotSpeed * Time.deltaTime);
-
+            look2.canSelect = false;
+            isStopped = false;
 		} 
-		else if (theCam.rotation.y < -0.1f) 
+		else if (theCam.rotation.y < -0.2f) 
 		{
+            
 			wallController.rotateSpeed = rotSpeed;
 			go.transform.Rotate(Vector3.up * rotSpeed * Time.deltaTime);
+            look2.canSelect = false;
+            isStopped = false;
 		} 
 		else 
 		{
-			wallController.rotateSpeed = 0;
+            if (!isStopped)
+            {
+                wallController.rotateSpeed = 0;
+                StartCoroutine(look2.Wait2Select(1f));
+                isStopped = true;
+            }
 		}
 
 	}

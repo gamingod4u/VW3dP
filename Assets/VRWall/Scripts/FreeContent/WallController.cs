@@ -1,33 +1,52 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 public class ContentColumn
 {
 	public int page;
 	public float rotation;
 	public GameObject[] obj;
+
 }
-public class WallController : MonoBehaviour 
+
+public class WallController : MonoBehaviour
 {
-	public List<GameObject> 	videoObjects;
+
+    #region Class Variables
+    public List<GameObject> 	videoObjects;
 	public GameObject			playerObject;
 	public DataLoader 			dataLoader;
 	public float 				rotateSpeed = 0;
 
 	private List<GameObject> 	objects;
 	private ContentColumn[] 	contentGrid;
+    private Look2Select         look2;
 	private bool 				haltNegScroll;
 	private bool				haltPosScroll;
 
 	private int 				objectCount = 0;
 	private int 				MaxColumns = 15;
 	private int 				MaxRows = 4;
+    #endregion
 
+    #region Unity Functions
+    void Awake() 
+    {
+        
+    }
 	// Use this for initialization
 	void Start () 
 	{
-		contentGrid = new ContentColumn[MaxColumns];
+        look2 = GameObject.Find("Look2Select").GetComponent<Look2Select>();
+        look2.enabled = false;
+    	contentGrid = new ContentColumn[MaxColumns];
 		dataLoader = GameObject.FindGameObjectWithTag ("DataLoader").GetComponent<DataLoader> ();
 		LoadContent ();
+
+        if (AppManager.instance.VRConnected)
+            playerObject = GameObject.Find("OVRPlayerController");
+        else
+            playerObject = GameObject.Find("Camera");
 	}
 	
 	// Update is called once per frame
@@ -40,7 +59,7 @@ public class WallController : MonoBehaviour
 			if (rotateSpeed < 0 && haltPosScroll == true)
 				haltPosScroll = false;
 
-			if (!(rotateSpeed > 0 && haltPosScroll == true) && !(rotateSpeed < 0 && haltNegScroll == true))
+			if (!(rotateSpeed > 0 && haltPosScroll == true) && !(rotateSpeed < 0 && haltNegScroll == true) && look2.canSelect)
 			{
 				float angle = 0;
 				for (int col = 0; col < MaxColumns; col++)
@@ -128,8 +147,10 @@ public class WallController : MonoBehaviour
 			}		
 		}
 	}
+    #endregion
 
-	public void DisplayContent()
+    #region Class Functions
+    public void DisplayContent()
 	{
 	
 		int page = 0;
@@ -149,6 +170,7 @@ public class WallController : MonoBehaviour
 				contentGrid[i].obj[idx] = videoObjects[objectCount];	
 				objectCount++;
 			}
+            StartCoroutine("WaitToLook", 4f);
 		}
 	}
 
@@ -178,6 +200,15 @@ public class WallController : MonoBehaviour
 	public void OnDataLoad()
 	{
 		DisplayContent ();
-	}
+    }
+    #endregion
 
+    #region Class Coroutines
+
+    private IEnumerator WaitToLook(float time) 
+    {
+        yield return new WaitForSeconds(time);
+        look2.enabled = true;
+    }
+    #endregion
 }
