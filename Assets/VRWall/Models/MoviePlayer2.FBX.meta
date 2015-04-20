@@ -37,6 +37,7 @@ ModelImporter:
     100062: Plane015
     100064: Screen
     100066: TimeSliderBackground
+    100068: Plane001
     400000: Background
     400002: ButtonB1
     400004: ButtonB2
@@ -71,6 +72,7 @@ ModelImporter:
     400062: Plane015
     400064: Screen
     400066: TimeSliderBackground
+    400068: Plane001
     2300000: Background
     2300002: ButtonB1
     2300004: ButtonB2
@@ -105,6 +107,7 @@ ModelImporter:
     2300062: Screen
     2300064: TimeSliderBackground
     2300066: //RootNode
+    2300068: Plane001
     3300000: Background
     3300002: ButtonB1
     3300004: ButtonB2
@@ -139,6 +142,7 @@ ModelImporter:
     3300062: Screen
     3300064: TimeSliderBackground
     3300066: //RootNode
+    3300068: Plane001
     4300000: Background
     4300002: Screen
     4300004: PanelBackGround
@@ -172,6 +176,7 @@ ModelImporter:
     4300060: Plane013
     4300062: Plane014
     4300064: Plane015
+    4300066: Plane001
     9500000: //RootNode
   materials:
     importMaterials: 1
