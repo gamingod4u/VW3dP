@@ -68,7 +68,7 @@ public class VideoObject : MonoBehaviour
 	{
 		moviePlayer = GameObject.Find ("MoviePlayer2");
     #if UNITY_STANDALONE
-		qtPlayer = (AVProQuickTimeMovie)moviePlayer.GetComponent(typeof(AVProQuickTimeMovie));
+		qtPlayer = moviePlayer.GetComponent<AVProQuickTimeMovie>();
     #endif
 
         if (AppManager.instance.VRConnected)
@@ -77,7 +77,7 @@ public class VideoObject : MonoBehaviour
             playerObject = GameObject.Find("Camera");
 
 		center = playerObject.transform.position;
-
+      
 		Transform t = gameObject.transform.Find ("progress");
 	    progressBar = t.gameObject;
 		progressScale = t.localScale;
@@ -146,6 +146,10 @@ public class VideoObject : MonoBehaviour
             {
                 transform.localPosition = origPosition;
                 transform.localRotation = origRotation;
+                GameObject head = GameObject.Find("HeadTracking");
+                head.GetComponent<HeadTracking>().canRotate = true;
+                Look2Select look = GameObject.Find("Look2Select").GetComponent<Look2Select>();
+                StartCoroutine(look.Wait2Select(2));
                 moveBack = false;
 
                 enableCollider();
@@ -278,8 +282,9 @@ public class VideoObject : MonoBehaviour
 	void startVideo (string url)
 	{
         AppManager.instance.MovieURL = url;
-		/*GameObject player = GameObject.Find ("MoviePlayer2");
 		
+        moviePlayer.SetActive(true);
+		/*
 		Vector3 pos = transform.position;
 		pos.x = 0;
 		pos.y = 0.7f;
@@ -291,7 +296,7 @@ public class VideoObject : MonoBehaviour
 		
 		player.transform.LookAt(centerPt);
     //	player.transform.position = (player.transform.position - center) * 0.50f;
-		
+		*/
 #if UNITY_STANDALONE
 		AVProQuickTime movie = qtPlayer.MovieInstance;
 		if (movie != null)
@@ -303,7 +308,7 @@ public class VideoObject : MonoBehaviour
 
 		qtPlayer.LoadMovie ();
 #endif
-		Debug.Log("Start video: " + url);*/
+		Debug.Log("Start video: " + url);
 	}
 
     public void stopThumbRotation()

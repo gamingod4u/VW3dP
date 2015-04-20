@@ -4,16 +4,16 @@ using System;
 
 public class HeadTracking : MonoBehaviour 
 {
-	public  GameObject theWall;
-	public  GameObject theOptions;
-	public  Transform  theCam;
-	public	bool onOptions = false;
-	public  bool onWalls = false;
-	
+	public GameObject theWall;
+	public GameObject theOptions;
+	public Transform  theCam;
+    public float rotSpeed = 30f;
+	public bool onOptions = false;
+	public bool onWalls = false;
+    public bool canRotate = true;
 	private WallController	wallController;
     private Look2Select look2;
     private bool isStopped = false;
-	public float 	   rotSpeed = 30f;
 	
 	void Awake()
 	{
@@ -61,14 +61,14 @@ public class HeadTracking : MonoBehaviour
 	private void RotateStuff(GameObject go)
 	{
 	
-		if (theCam.rotation.y > 0.2) 
+		if (theCam.rotation.y > 0.2 && canRotate) 
 		{
 			wallController.rotateSpeed = -rotSpeed;
 			go.transform.Rotate(Vector3.down * rotSpeed * Time.deltaTime);
             look2.canSelect = false;
             isStopped = false;
 		} 
-		else if (theCam.rotation.y < -0.2f) 
+		else if (theCam.rotation.y < -0.2f && canRotate) 
 		{
             
 			wallController.rotateSpeed = rotSpeed;
@@ -81,7 +81,7 @@ public class HeadTracking : MonoBehaviour
             if (!isStopped)
             {
                 wallController.rotateSpeed = 0;
-                StartCoroutine(look2.Wait2Select(1f));
+                StartCoroutine(look2.Wait2Select(2f));
                 isStopped = true;
             }
 		}

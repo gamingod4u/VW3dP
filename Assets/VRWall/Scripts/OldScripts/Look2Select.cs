@@ -25,6 +25,7 @@ public class Look2Select : MonoBehaviour
             _cam = GameObject.Find("Camera").GetComponent<Transform>();
 
         theWall = GameObject.Find("TheWall").GetComponent<WallController>();
+        headTracker = GameObject.Find("HeadTracking").GetComponent<HeadTracking>();
 		_selectedObject = null;
 	}
 	
@@ -40,7 +41,7 @@ public class Look2Select : MonoBehaviour
 			reticle.transform.position = _hit.point;
             Debug.DrawLine(_cam.position, _hit.point, Color.red);
       
-            if (_selectedObject != null && _selectedObject.GetInstanceID() == _hit.transform.gameObject.GetInstanceID() && canSelect)
+            if (_selectedObject != null && _selectedObject.GetInstanceID() == _hit.transform.gameObject.GetInstanceID())
             {
                 
                 return;
@@ -51,7 +52,6 @@ public class Look2Select : MonoBehaviour
                 if (_selectedObject.tag == "button")
                 {
                     ButtonAction button = (ButtonAction)_selectedObject.GetComponent(typeof(ButtonAction));
-                    StartCoroutine(Wait2Select(1));
                     button.lookingAt(false);
                 }
 
@@ -60,7 +60,7 @@ public class Look2Select : MonoBehaviour
                     VideoObject video = (VideoObject)_selectedObject.GetComponent(typeof(VideoObject));
                     video.selected = false;
                     video.stopThumbRotation();
-                    StartCoroutine(Wait2Select(1));
+                    headTracker.canRotate = false;
                 }
                          
                 _selectedObject = null;
