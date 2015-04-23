@@ -308,6 +308,7 @@ public class VideoObject : MonoBehaviour
 
 		qtPlayer.LoadMovie ();
 #endif
+         
 		Debug.Log("Start video: " + url);
 	}
 
@@ -318,6 +319,7 @@ public class VideoObject : MonoBehaviour
         moveClose = false;
         isRotating = false;
         disableCollider();
+
         if (isPreviewing == true)
         {
             // We're done. reset thumbnail
