@@ -115,32 +115,20 @@ public class WatchingRoomManager : MonoBehaviour
             case "fastforward": 
             {
                 AVProQuickTime movie = qtManager.MovieInstance;
-                
-                if (!movie.IsPlaying)
-                {
-                    movie.Play();
-                    playButton.SetActive(false);
-                    stopButton.SetActive(true);
-                    pauseButton.SetActive(true);
-                }
-
                 movie.PositionSeconds += (16 * Time.deltaTime);
+                
 
             } break;
             case "rewind": 
             {
                 AVProQuickTime movie = qtManager.MovieInstance;
-
-                if (!movie.IsPlaying) 
-                {
-                    movie.Play();
-                    playButton.SetActive(false);
-                    stopButton.SetActive(true);
-                    pauseButton.SetActive(true);
-                }
-
                 movie.PositionSeconds -= (16 * Time.deltaTime);
+               
             } break;
+			case "home":
+			{
+				
+			}break;
 
         }
     }
@@ -158,8 +146,17 @@ public class WatchingRoomManager : MonoBehaviour
         qtManager._filename = url;
         qtManager._playOnStart = true;
         qtManager.LoadMovie();
+
 #endif
+		StartCoroutine(WaitForPlay());
         Debug.Log("Started Movie:");
     }
+
+	private IEnumerator WaitForPlay()
+	{
+		yield return new WaitForSeconds(1);
+		playButton.GetComponent<VideoButtons>().isActive = false;
+		playButton.SetActive(false);
+	}
     #endregion
 }

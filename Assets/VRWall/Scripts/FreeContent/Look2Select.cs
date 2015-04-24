@@ -20,7 +20,7 @@ public class Look2Select : MonoBehaviour
 	{
 
         if (AppManager.instance.VRConnected)
-            _cam = GameObject.Find("OVRPlayerController").GetComponent<Transform>();
+            _cam = GameObject.Find("CenterEyeAnchor").GetComponent<Transform>();
         else
             _cam = GameObject.Find("Camera").GetComponent<Transform>();
 
@@ -48,11 +48,12 @@ public class Look2Select : MonoBehaviour
             }
             else if (_selectedObject != null && _selectedObject.GetInstanceID() != _hit.transform.gameObject.GetInstanceID())
             {
-               
-                if (_selectedObject.tag == "button")
+
+                if (_selectedObject.tag == "menuButtons")
                 {
-                    ButtonAction button = (ButtonAction)_selectedObject.GetComponent(typeof(ButtonAction));
-                    button.lookingAt(false);
+                    MenuButtons button = (MenuButtons)_selectedObject.GetComponent(typeof(MenuButtons));
+                    button.LookingAt(false);
+                    
                 }
 
                 if (_selectedObject.tag == "thumbnail")
@@ -60,9 +61,8 @@ public class Look2Select : MonoBehaviour
                     VideoObject video = (VideoObject)_selectedObject.GetComponent(typeof(VideoObject));
                     video.selected = false;
                     video.stopThumbRotation();
-                    headTracker.canRotate = false;
                 }
-                         
+                StartCoroutine(headTracker.WaitToRotate());                         
                 _selectedObject = null;
             }
             else
@@ -70,10 +70,10 @@ public class Look2Select : MonoBehaviour
 
                 if (canSelect)
                 {
-                    if (_hit.transform.gameObject.tag == "button")
+                    if (_hit.transform.gameObject.tag == "menuButtons")
                     {
-                        ButtonAction button = (ButtonAction)_hit.transform.gameObject.GetComponent(typeof(ButtonAction));
-                        button.lookingAt(true);
+                        MenuButtons button = (MenuButtons)_hit.transform.gameObject.GetComponent(typeof(MenuButtons));
+                        button.LookingAt(true);
                         _selectedObject = _hit.transform.gameObject;
                     }
 
@@ -83,6 +83,7 @@ public class Look2Select : MonoBehaviour
                         video.selected = true;
                         video.startThumbRotation();
                         _selectedObject = _hit.transform.gameObject;
+                        headTracker.canRotate = false;
                     }
                 }
             }

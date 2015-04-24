@@ -28,21 +28,26 @@ public class AppManager : MonoBehaviour
             Destroy(this);
         else
             instance = this;
+
+
+        if (OVRManager.display.isPresent)
+            isVRConnected = true;
+        else
+            isVRConnected = false;
     }
 	// Use this for initialization
 	void Start () 
     {
         DontDestroyOnLoad(this.gameObject);
 
-        if (OVRManager.display.isPresent)
-            isVRConnected = true;
-        else
-            isVRConnected = false;
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
-	
+		if(Input.GetKeyDown(KeyCode.Escape))
+		{
+			Application.Quit();
+		}
 	}
 }

@@ -6,9 +6,10 @@ public class SplashScreen : MonoBehaviour
 	public GameObject[] splashAssets;
 	public GameObject[] sponsorLogos;
 
-	private float 		tweenTimer = 1f;
-	private float 		waitTimer = 15f;
+	private float 		tweenTimer = 3f;
+	private float 		waitTimer = 10f;
 	private bool 		isRunning = true;
+    private bool firstPass = false;
 	private int 		menuCount = -1;
 
 	// Use this for initialization
@@ -22,18 +23,19 @@ public class SplashScreen : MonoBehaviour
 
     void Start() 
     {
-        if (!AppManager.instance.VRConnected)
-            waitTimer = 3;
-        else
-            waitTimer = 15;
-            
-            
-            StartCoroutine("WaitToEnd");
+
     }
 	
 	// Update is called once per frame
 	void Update () 
 	{
+        if (!firstPass)
+        {
+            StartCoroutine("WaitFor1Second");
+            StartCoroutine("WaitToEnd");
+            firstPass = false;
+        }
+            
 		if(!isRunning)
 		{
 			isRunning = true;
@@ -63,14 +65,7 @@ public class SplashScreen : MonoBehaviour
 
 	private IEnumerator TweenAlpha(GameObject thisObject)
 	{
-		float alphaColor = thisObject.renderer.material.color.a;
-		yield return new WaitForSeconds(tweenTimer);
-		while(alphaColor > 0)
-		{
-			alphaColor -= Time.deltaTime * .5f;
-			thisObject.renderer.material.color = new Color(255,255,255,alphaColor);
-			yield return 0;
-		}   
+	
 		yield return new WaitForSeconds(tweenTimer);
 
         if (menuCount <= 2)
@@ -82,6 +77,12 @@ public class SplashScreen : MonoBehaviour
 		isRunning = false;
 	}
 
+    private IEnumerator WaitFor1Second() 
+    {
+        yield return new WaitForSeconds(1);
+            waitTimer = 3;
+      
+    }
 	private IEnumerator WaitToEnd()
 	{
 		if(menuCount == -1)

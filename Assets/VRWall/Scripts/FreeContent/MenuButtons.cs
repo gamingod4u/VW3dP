@@ -30,45 +30,53 @@ public class MenuButtons : MonoBehaviour
 	void Update () 
 	{
 		if(this.selected)
-			if(barSize.x < fullBarSize.x)
+		{
+			if(progress.transform.localScale.x < fullBarSize.x)
 			{
+				Debug.Log(progress.transform.localScale.x + " " + fullBarSize.x);
 				barSize = new Vector3(selectSpeed * Time.deltaTime, 0, 0);
 				progress.transform.localScale += barSize;
 			}
 			else
+			{
 				if(lastName != buttonName)
 					SwitchState();
+			}
+		}
 		else 
 		{
+            HideProgressBar();
 		   buttonState = 0;
 		}	
 			
-		SwitchActionState();
+
 		
 	}
 	
 	private void HideProgressBar()
 	{
+        barSize = new Vector3(0, progress.transform.localScale.y, progress.transform.localScale.z);
+        progress.transform.localScale = barSize;
 		progress.renderer.enabled = false;
 	}
 	
-	public void LoogkingAt(bool state)
+	public void LookingAt(bool state)
 	{
 		if(state)
 		{
 			ShowProgressBar();
-			selected = true;
+			selected = state;
 		}
 		else
 		{
 			HideProgressBar();
-			selected = false;
+			selected = state;
 		}
 	}
 	private void ShowProgressBar()
 	{
 		progress.renderer.enabled = true;
-		barSize = new Vector3(0, progress.transform.localScale.y, progress.transform.localScale.z);	
+		
 	}
 	private void SwitchActionState()
 	{
@@ -86,17 +94,16 @@ public class MenuButtons : MonoBehaviour
 		switch(buttonName)
 		{
 			case "none":		buttonState = 0;break;
-			case "home": 		buttonState = 1;break;
+			case "home": 		buttonState = 1; Application.LoadLevel(1);break;
 			case "search":		buttonState = 2;break;
 			case "category":	buttonState = 3;break;
 			case "keywords":	buttonState = 4;break;
 			case "profile":		buttonState = 5;break;
 			case "faves":		buttonState = 6;break;
 			case "playlists": 	buttonState = 7;break;
-			case "log":			buttonState = 8;break;
+			case "logout":		Debug.Log("Exiting!");buttonState = 8; Application.Quit();break;
 			
 		}
-		lastName = buttonName;
 	}
 	
 

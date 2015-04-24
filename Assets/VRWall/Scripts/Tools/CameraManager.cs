@@ -11,14 +11,24 @@ public class CameraManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        FindCameras();
+	}
+
+    void Update() 
+    {
+        if(ovrCamera == null && regCamera == null)
+            FindCameras();
+    }
+    private void FindCameras() 
+    {
         ovrCamera = GameObject.Find("OVRPlayerController");
         regCamera = GameObject.Find("Camera");
 
-
-
-        if (!AppManager.instance.VRConnected)
-            ovrCamera.SetActive(false);
-        else
-            regCamera.SetActive(false);
-	}
+       
+            if (!AppManager.instance.VRConnected)
+                ovrCamera.SetActive(false);
+            else
+                regCamera.SetActive(false);
+  
+    }
 }

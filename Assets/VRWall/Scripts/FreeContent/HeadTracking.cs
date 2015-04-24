@@ -27,7 +27,7 @@ public class HeadTracking : MonoBehaviour
 		theOptions = GameObject.Find("TheOptions");
         look2 = GameObject.Find("Look2Select").GetComponent<Look2Select>();
         if (AppManager.instance.VRConnected)
-            theCam = GameObject.Find("OVRCameraRig/CenterEyeAnchor").GetComponentInChildren<Transform>();
+            theCam = GameObject.Find("CenterEyeAnchor").GetComponent<Transform>();
         else
             theCam = GameObject.Find("Camera").GetComponent<Transform>();
 	}
@@ -65,7 +65,6 @@ public class HeadTracking : MonoBehaviour
 		{
 			wallController.rotateSpeed = -rotSpeed;
 			go.transform.Rotate(Vector3.down * rotSpeed * Time.deltaTime);
-            look2.canSelect = false;
             isStopped = false;
 		} 
 		else if (theCam.rotation.y < -0.2f && canRotate) 
@@ -73,7 +72,6 @@ public class HeadTracking : MonoBehaviour
             
 			wallController.rotateSpeed = rotSpeed;
 			go.transform.Rotate(Vector3.up * rotSpeed * Time.deltaTime);
-            look2.canSelect = false;
             isStopped = false;
 		} 
 		else 
@@ -87,4 +85,10 @@ public class HeadTracking : MonoBehaviour
 		}
 
 	}
+
+    public IEnumerator WaitToRotate() 
+    {
+        yield return new WaitForSeconds(1);
+        canRotate = true;
+    }
 }

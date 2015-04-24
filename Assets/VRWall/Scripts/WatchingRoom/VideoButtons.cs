@@ -13,8 +13,8 @@ public class VideoButtons : MonoBehaviour
     private string lastName = string.Empty;
     private float selectTime = 1;
     private float selectTimer = 0;
-    private bool selected = false;
-    private bool isActive = false;
+    public bool selected = false;
+    public bool isActive = false;
     #endregion 
 
     #region Unity Functions
@@ -26,6 +26,12 @@ public class VideoButtons : MonoBehaviour
         t.SetParent(gameObject.transform.parent);
         disabledMat = this.renderer.material.mainTexture;
 
+		if(this.transform.name == "play")
+		{
+			isActive = false;
+			this.gameObject.SetActive(false);
+
+		}
  	}
 	
 	// Update is called once per frame
@@ -91,8 +97,18 @@ public class VideoButtons : MonoBehaviour
             case "rewind":
             {
                 if (ButtonPressed != null)
-                    ButtonPressed("fastforward");
+                    ButtonPressed("rewind");
             } break;
+			case "home":
+			{
+				if (ButtonPressed != null)
+					ButtonPressed("home");
+			} break;
+			case "logout":
+			{
+				if (ButtonPressed != null)
+					ButtonPressed("logout");
+			} break;
         }
     
     }
