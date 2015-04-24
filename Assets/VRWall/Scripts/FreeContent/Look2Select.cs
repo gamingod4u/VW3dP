@@ -61,6 +61,7 @@ public class Look2Select : MonoBehaviour
                     VideoObject video = (VideoObject)_selectedObject.GetComponent(typeof(VideoObject));
                     video.selected = false;
                     video.stopThumbRotation();
+                  
                 }
                 StartCoroutine(headTracker.WaitToRotate());                         
                 _selectedObject = null;

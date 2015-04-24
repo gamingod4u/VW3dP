@@ -82,6 +82,7 @@ public class VideoObject : MonoBehaviour
 	    progressBar = t.gameObject;
 		progressScale = t.localScale;
 
+
         t = gameObject.transform.Find("preview");
         preview = t.gameObject;
 		preview.GetComponent<Renderer> ().enabled = false;
@@ -96,14 +97,14 @@ public class VideoObject : MonoBehaviour
 	}
     void Update()
     {
-
-        if (activeTexture)
-        {
-            //			activeTexture.SetPixel (Random.Range (0, 128), Random.Range (0, 128), Color.red);
-            //			activeTexture.Apply ();
+        /*
+       if (activeTexture)
+       {
+            activeTexture.SetPixel (Random.Range (0, 128), Random.Range (0, 128), Color.red);
+            activeTexture.Apply ();
         }
-
-        //		t.GetComponent<Renderer> ().material.mainTexture = tex;
+        t.GetComponent<Renderer> ().material.mainTexture = tex;
+        */
 
         if (selected && inFront && progressBar.transform.localScale.x < progressScale.x)
         {
@@ -115,8 +116,8 @@ public class VideoObject : MonoBehaviour
                 size.x = progressScale.x;
 
                 startVideo("http://smog-05.tnaflix.com/01/013930fb091d29f48a09/out8.mp4");
-                //				startVideo ("http://smog-05.tnaflix.com/oculus/2cdb5eaa01977f56735e_720p_2_oculus.mp4");
-                //				startVideo ("http://smog-05.tnaflix.com/oculus/e39ebb0dfb67445919f9.mp4");
+                //startVideo ("http://smog-05.tnaflix.com/oculus/2cdb5eaa01977f56735e_720p_2_oculus.mp4");
+                //startVideo ("http://smog-05.tnaflix.com/oculus/e39ebb0dfb67445919f9.mp4");
             }
 
             progressBar.transform.localScale = size;
@@ -146,12 +147,7 @@ public class VideoObject : MonoBehaviour
             {
                 transform.localPosition = origPosition;
                 transform.localRotation = origRotation;
-                GameObject head = GameObject.Find("HeadTracking");
-                head.GetComponent<HeadTracking>().canRotate = true;
-                Look2Select look = GameObject.Find("Look2Select").GetComponent<Look2Select>();
-                StartCoroutine(look.Wait2Select(2));
                 moveBack = false;
-
                 enableCollider();
             }
         }
@@ -229,7 +225,7 @@ public class VideoObject : MonoBehaviour
 	private void reachedFront()
 	{
 		showProgressBar ();
-
+       
 		currRotationThumb = 1;
 		moveClose = false;
 		isRotating = true;
@@ -284,35 +280,6 @@ public class VideoObject : MonoBehaviour
 	{
         AppManager.instance.MovieURL = url;
         Application.LoadLevel(2);
-       // moviePlayer.SetActive(true);
-		/*
-		Vector3 pos = transform.position;
-		pos.x = 0;
-		pos.y = 0.7f;
-		pos.z = 2.1f;
-		player.transform.position = pos;
-		
-		Vector3 centerPt = center;
-		centerPt.y = 0.7f;
-		
-		player.transform.LookAt(centerPt);
-    //	player.transform.position = (player.transform.position - center) * 0.50f;
-		
-#if UNITY_STANDALONE
-		AVProQuickTime movie = qtPlayer.MovieInstance;
-         
-		if (movie != null)
-			qtPlayer.UnloadMovie ();
-
-		qtPlayer._playOnStart = true;
-		qtPlayer._source = AVProQuickTimePlugin.MovieSource.URL;
-		qtPlayer._filename = url;
-
-		qtPlayer.LoadMovie ();
-#endif
-         
-		Debug.Log("Start video: " + url);
-         * */
 	}
 
     public void stopThumbRotation()

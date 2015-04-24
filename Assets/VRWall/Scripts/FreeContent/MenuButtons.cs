@@ -33,7 +33,6 @@ public class MenuButtons : MonoBehaviour
 		{
 			if(progress.transform.localScale.x < fullBarSize.x)
 			{
-				Debug.Log(progress.transform.localScale.x + " " + fullBarSize.x);
 				barSize = new Vector3(selectSpeed * Time.deltaTime, 0, 0);
 				progress.transform.localScale += barSize;
 			}

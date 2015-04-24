@@ -6,12 +6,14 @@ public class LookSelection : MonoBehaviour
     #region Class Variables
     public delegate void HitEvent(string name, string tag);
     public static event HitEvent OnHit;
+    public bool canSelect = false;
 
+    private HeadTracking head;
     private GameObject      selectedObject;
     private GameObject      camera;
     private GameObject      reticle;
     private RaycastHit      hit;
-    private bool            canSelect = false;
+    
     private bool            firstPass = false;
     #endregion
 
@@ -19,9 +21,8 @@ public class LookSelection : MonoBehaviour
     // Use this for initialization
 	void Start () 
     {
-        
         reticle = GameObject.Find("Reticle");
-
+        head = GameObject.Find("HeadTracking").GetComponent<HeadTracking>();
 	}
 	
 	// Update is called once per frame
@@ -36,7 +37,7 @@ public class LookSelection : MonoBehaviour
                 camera = GameObject.Find("Camera");
 
             firstPass = true;
-
+            StartCoroutine(Wait2Select());
         }
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit))
         {
@@ -72,6 +73,7 @@ public class LookSelection : MonoBehaviour
                     VideoObject video = (VideoObject)selectedObject.GetComponent(typeof(VideoObject));
                     video.selected = false;
                     video.stopThumbRotation();
+                    StartCoroutine(head.WaitToRotate());
                     StartCoroutine(Wait2Select());
                 }
                 
@@ -101,9 +103,10 @@ public class LookSelection : MonoBehaviour
                     {
                         VideoObject video = hit.transform.gameObject.GetComponent<VideoObject>();
                         video.selected = true;
-                        video.startThumbRotation();
-                        selectedObject = hit.transform.gameObject;
                         canSelect = false;
+                        video.startThumbRotation();
+                        head.canRotate = false;
+                        selectedObject = hit.transform.gameObject;
                     }
                 }
             }
@@ -117,7 +120,7 @@ public class LookSelection : MonoBehaviour
 
     public IEnumerator Wait2Select() 
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         canSelect = true;
     }
 

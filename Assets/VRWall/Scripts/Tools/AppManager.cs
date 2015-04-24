@@ -30,6 +30,7 @@ public class AppManager : MonoBehaviour
             instance = this;
 
 
+        Screen.showCursor = false;
         if (OVRManager.display.isPresent)
             isVRConnected = true;
         else
@@ -41,7 +42,10 @@ public class AppManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
 	}
-	
+    void OnDestroy() 
+    {
+        Screen.showCursor = true;
+    }
 	// Update is called once per frame
 	void Update () 
     {

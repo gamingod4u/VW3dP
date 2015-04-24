@@ -20,7 +20,7 @@ public class WallController : MonoBehaviour
 
 	private List<GameObject> 	objects;
 	private ContentColumn[] 	contentGrid;
-    private Look2Select         look2;
+    private HeadTracking        headTracker;
 	private bool 				haltNegScroll;
 	private bool				haltPosScroll;
 
@@ -30,16 +30,11 @@ public class WallController : MonoBehaviour
     #endregion
 
     #region Unity Functions
-    void Awake() 
-    {
-        
-    }
 
 	// Use this for initialization
 	void Start () 
 	{
-        look2 = GameObject.Find("Look2Select").GetComponent<Look2Select>();
-        look2.enabled = false;
+     
     	contentGrid = new ContentColumn[MaxColumns];
 		dataLoader = GameObject.FindGameObjectWithTag ("DataLoader").GetComponent<DataLoader> ();
 		LoadContent ();
@@ -48,11 +43,14 @@ public class WallController : MonoBehaviour
             playerObject = GameObject.Find("OVRPlayerController");
         else
             playerObject = GameObject.Find("Camera");
+
+        headTracker = GameObject.Find("HeadTracking").GetComponent<HeadTracking>();
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+        rotateSpeed = headTracker.rotSpeed;
 		if (rotateSpeed != 0.0f) 
 		{
 			if (rotateSpeed > 0 && haltNegScroll == true)
@@ -60,7 +58,7 @@ public class WallController : MonoBehaviour
 			if (rotateSpeed < 0 && haltPosScroll == true)
 				haltPosScroll = false;
 
-			if (!(rotateSpeed > 0 && haltPosScroll == true) && !(rotateSpeed < 0 && haltNegScroll == true) && look2.canSelect)
+			if (!(rotateSpeed > 0 && haltPosScroll == true) && !(rotateSpeed < 0 && haltNegScroll == true))
 			{
 				float angle = 0;
 				for (int col = 0; col < MaxColumns; col++)
@@ -167,7 +165,6 @@ public class WallController : MonoBehaviour
 				contentGrid[i].obj[idx] = videoObjects[objectCount];	
 				objectCount++;
 			}
-            StartCoroutine("WaitToLook", 4f);
 		}
 	}
 
@@ -200,12 +197,5 @@ public class WallController : MonoBehaviour
     }
     #endregion
 
-    #region Class Coroutines
 
-    private IEnumerator WaitToLook(float time) 
-    {
-        yield return new WaitForSeconds(time);
-        look2.enabled = true;
-    }
-    #endregion
 }

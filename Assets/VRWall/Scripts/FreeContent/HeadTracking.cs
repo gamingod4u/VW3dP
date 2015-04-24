@@ -2,30 +2,35 @@
 using System.Collections;
 using System;
 
-public class HeadTracking : MonoBehaviour 
+public class HeadTracking : MonoBehaviour
 {
-	public GameObject theWall;
-	public GameObject theOptions;
-	public Transform  theCam;
-    public float rotSpeed = 30f;
-	public bool onOptions = false;
-	public bool onWalls = false;
+    #region Class Variables
+
     public bool canRotate = true;
-	private WallController	wallController;
-    private Look2Select look2;
-    private bool isStopped = false;
-	
-	void Awake()
+    public float rotSpeed = 30f;
+    
+    private Look2Select     look2; 
+    private GameObject      theWall;
+	private GameObject      theOptions;
+	private Transform       theCam;   
+    private bool            onOptions = false;
+	private bool            onWalls = false;   
+    private bool            isStopped = false;
+    #endregion
+
+    #region Unity Functions
+    void Awake()
 	{
-		Look2Select.OnHit += new Look2Select.HitEvent (OnHit);
+        LookSelection.OnHit += new LookSelection.HitEvent(OnHit);
 	}
 	// Use this for initialization
 	void Start () 
 	{
-		theWall = GameObject.Find ("TheWall");
-		wallController = theWall.GetComponent<WallController> ();
-		theOptions = GameObject.Find("TheOptions");
-        look2 = GameObject.Find("Look2Select").GetComponent<Look2Select>();
+        if (Application.loadedLevel == 1)
+        {
+            theOptions = GameObject.Find("TheOptions");
+            theWall = GameObject.Find("TheWall");
+        }
         if (AppManager.instance.VRConnected)
             theCam = GameObject.Find("CenterEyeAnchor").GetComponent<Transform>();
         else
@@ -33,18 +38,24 @@ public class HeadTracking : MonoBehaviour
 	}
 	void Destroy()
 	{
-		Look2Select.OnHit -= new Look2Select.HitEvent (OnHit);
+		LookSelection.OnHit -= new LookSelection.HitEvent (OnHit);
 	}
 	// Update is called once per frame
 	void Update () 
 	{
-		if (onWalls)
-			RotateStuff (theWall);
-		else
-			RotateStuff (theOptions);
+        if (Application.loadedLevel == 1)
+        {
+            if (onWalls)
+                RotateStuff(theWall);
+            else
+                RotateStuff(theOptions);
+        }
 	}
 
-	private void OnHit(string name)
+    #endregion 
+
+    #region Class Functions
+    private void OnHit(string name, string tag)
 	{
 		if (name.Contains("Video")) 
 		{
@@ -63,23 +74,18 @@ public class HeadTracking : MonoBehaviour
 	
 		if (theCam.rotation.y > 0.2 && canRotate) 
 		{
-			wallController.rotateSpeed = -rotSpeed;
 			go.transform.Rotate(Vector3.down * rotSpeed * Time.deltaTime);
             isStopped = false;
 		} 
 		else if (theCam.rotation.y < -0.2f && canRotate) 
 		{
-            
-			wallController.rotateSpeed = rotSpeed;
-			go.transform.Rotate(Vector3.up * rotSpeed * Time.deltaTime);
+            go.transform.Rotate(Vector3.up * rotSpeed * Time.deltaTime);
             isStopped = false;
 		} 
 		else 
 		{
             if (!isStopped)
             {
-                wallController.rotateSpeed = 0;
-                StartCoroutine(look2.Wait2Select(2f));
                 isStopped = true;
             }
 		}
@@ -91,4 +97,5 @@ public class HeadTracking : MonoBehaviour
         yield return new WaitForSeconds(1);
         canRotate = true;
     }
+    #endregion
 }
