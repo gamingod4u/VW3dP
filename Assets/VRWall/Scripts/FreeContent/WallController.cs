@@ -34,6 +34,7 @@ public class WallController : MonoBehaviour
     {
         
     }
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -64,11 +65,9 @@ public class WallController : MonoBehaviour
 				float angle = 0;
 				for (int col = 0; col < MaxColumns; col++)
 				{
-			
 					Vector3 directionToTarget = contentGrid[col].obj[0].transform.position - playerObject.transform.position;
 					angle = Vector3.Angle(playerObject.transform.forward, directionToTarget);
 					contentGrid[col].rotation = angle;
-				
 				}
 			}
 			// Find lowest and highest page
@@ -97,8 +96,6 @@ public class WallController : MonoBehaviour
 					}
 				}
 			}
-			
-			
 			
 			if (contentGrid[lowestIdx].rotation > 90 && contentGrid[lowestIdx].rotation < 100 && rotateSpeed < 0)
 			{

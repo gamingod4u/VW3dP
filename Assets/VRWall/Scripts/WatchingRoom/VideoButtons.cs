@@ -23,8 +23,10 @@ public class VideoButtons : MonoBehaviour
     {
         Transform t = gameObject.transform.Find("enabled");
         enabledMat = t.gameObject.GetComponent<Renderer>();
+        t.SetParent(gameObject.transform.parent);
         disabledMat = this.renderer.material.mainTexture;
-	}
+
+ 	}
 	
 	// Update is called once per frame
 	void Update () 
@@ -32,6 +34,7 @@ public class VideoButtons : MonoBehaviour
         if (selected)
         {
             this.renderer.material.SetTexture(0,enabledMat.material.mainTexture);
+            CheckButton();
         }
         else
         {

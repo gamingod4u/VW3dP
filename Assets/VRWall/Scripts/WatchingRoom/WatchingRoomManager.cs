@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Threading;
 
 public class WatchingRoomManager : MonoBehaviour
 {
@@ -36,6 +38,7 @@ public class WatchingRoomManager : MonoBehaviour
         lookSelect = GameObject.Find("Look2Select").GetComponent<LookSelection>();
         StartCoroutine(lookSelect.Wait2Select());
         moviePlayer = GameObject.Find("MoviePlayer2");
+        moviePlayer.SetActive(false);
 
        
 #if UNITY_STANDALONE
@@ -43,7 +46,6 @@ public class WatchingRoomManager : MonoBehaviour
 #endif
         
         LoadMovie();
-        ButtonHit("play");
 	}
 	
 	// Update is called once per frame
@@ -113,6 +115,7 @@ public class WatchingRoomManager : MonoBehaviour
             case "fastforward": 
             {
                 AVProQuickTime movie = qtManager.MovieInstance;
+                
                 if (!movie.IsPlaying)
                 {
                     movie.Play();
@@ -143,7 +146,9 @@ public class WatchingRoomManager : MonoBehaviour
     }
     private void LoadMovie() 
     {
+        moviePlayer.SetActive(true);
 #if UNITY_STANDALONE
+      
         AVProQuickTime movie = qtManager.MovieInstance;
 
         if (movie != null)
@@ -151,7 +156,7 @@ public class WatchingRoomManager : MonoBehaviour
 
         qtManager._source = AVProQuickTimePlugin.MovieSource.URL;
         qtManager._filename = url;
-
+        qtManager._playOnStart = true;
         qtManager.LoadMovie();
 #endif
         Debug.Log("Started Movie:");

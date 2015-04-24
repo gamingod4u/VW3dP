@@ -10,3 +10,15 @@ C:\Users\Patrick\Documents\VW3dP\Temp\UnityVS_bin\Debug\UnityEngine.UI.xml
 C:\Users\Patrick\Documents\VW3dP\obj\Debug\UnityVS.VW3dP.CSharp.Plugins.csprojResolveAssemblyReference.cache
 C:\Users\Patrick\Documents\VW3dP\obj\Debug\Assembly-CSharp-firstpass.dll
 C:\Users\Patrick\Documents\VW3dP\obj\Debug\Assembly-CSharp-firstpass.pdb
+D:\PatricksFileSystem\Unity Projects\VW3dP\Temp\UnityVS_bin\Debug\Assembly-CSharp-firstpass.dll
+D:\PatricksFileSystem\Unity Projects\VW3dP\Temp\UnityVS_bin\Debug\Assembly-CSharp-firstpass.pdb
+D:\PatricksFileSystem\Unity Projects\VW3dP\Temp\UnityVS_bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\PatricksFileSystem\Unity Projects\VW3dP\Temp\UnityVS_bin\Debug\UnityEditor.dll
+D:\PatricksFileSystem\Unity Projects\VW3dP\Temp\UnityVS_bin\Debug\UnityEngine.dll
+D:\PatricksFileSystem\Unity Projects\VW3dP\Temp\UnityVS_bin\Debug\UnityEngine.UI.dll
+D:\PatricksFileSystem\Unity Projects\VW3dP\Temp\UnityVS_bin\Debug\UnityEngine.xml
+D:\PatricksFileSystem\Unity Projects\VW3dP\Temp\UnityVS_bin\Debug\UnityEditor.xml
+D:\PatricksFileSystem\Unity Projects\VW3dP\Temp\UnityVS_bin\Debug\UnityEngine.UI.xml
+D:\PatricksFileSystem\Unity Projects\VW3dP\obj\Debug\UnityVS.VW3dP.CSharp.Plugins.csprojResolveAssemblyReference.cache
+D:\PatricksFileSystem\Unity Projects\VW3dP\obj\Debug\Assembly-CSharp-firstpass.dll
+D:\PatricksFileSystem\Unity Projects\VW3dP\obj\Debug\Assembly-CSharp-firstpass.pdb

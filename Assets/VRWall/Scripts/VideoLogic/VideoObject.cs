@@ -19,7 +19,7 @@ public class VideoObject : MonoBehaviour
     private GameObject preview;
     private GameObject progressBar;
     private GameObject playerObject;
-    private GameObject moviePlayer;
+    //private GameObject moviePlayer;
     private Quaternion origRotation;
     private Texture2D activeTexture;
     private VideoData videoData;
@@ -66,10 +66,10 @@ public class VideoObject : MonoBehaviour
 	}
 	void Start()
 	{
-		moviePlayer = GameObject.Find ("MoviePlayer2");
+		/*moviePlayer = GameObject.Find ("MoviePlayer2");
     #if UNITY_STANDALONE
 		qtPlayer = moviePlayer.GetComponent<AVProQuickTimeMovie>();
-    #endif
+    #endif*/
 
         if (AppManager.instance.VRConnected)
             playerObject = GameObject.Find("OVRPlayerController");
@@ -252,7 +252,8 @@ public class VideoObject : MonoBehaviour
 	{
 		CancelInvoke ();
 		
-		if (isRotating == false) {
+		if (isRotating == false) 
+        {
 			// We're done. reset thumbnail
 			thumbNail.renderer.material.mainTexture = firstThumb;
 			return;
@@ -282,8 +283,8 @@ public class VideoObject : MonoBehaviour
 	void startVideo (string url)
 	{
         AppManager.instance.MovieURL = url;
-		
-        moviePlayer.SetActive(true);
+        Application.LoadLevel(2);
+       // moviePlayer.SetActive(true);
 		/*
 		Vector3 pos = transform.position;
 		pos.x = 0;
@@ -296,9 +297,10 @@ public class VideoObject : MonoBehaviour
 		
 		player.transform.LookAt(centerPt);
     //	player.transform.position = (player.transform.position - center) * 0.50f;
-		*/
+		
 #if UNITY_STANDALONE
 		AVProQuickTime movie = qtPlayer.MovieInstance;
+         
 		if (movie != null)
 			qtPlayer.UnloadMovie ();
 
@@ -310,6 +312,7 @@ public class VideoObject : MonoBehaviour
 #endif
          
 		Debug.Log("Start video: " + url);
+         * */
 	}
 
     public void stopThumbRotation()
